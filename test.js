@@ -1,6 +1,5 @@
-for (var i=0; i<20; i++) {
-	console.log("testing123 testing456");
-}
+console.log("testing123 testing456");
+console.log("LINE 2: testing123 testing456");
 // function inject_createInteractiveBall() {
 				
 // 	//Query assets in order to setup template
