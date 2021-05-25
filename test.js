@@ -19,7 +19,6 @@ if(document.querySelector("[class*=presence-log-in-room]") == null) {
 		}
 	}, 2000);
 }else{
-	console.log("checkingpresesences;")
 	checkPresence();
 }
 
@@ -67,3 +66,7 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 		console.log(fn + " is not a function");
 	}
 });
+
+function mod_test() {
+	console.log("MOD_TEST IS WORKING :D")
+}
