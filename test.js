@@ -1,7 +1,3 @@
-console.log("testing123 testing456");
-console.log("LINE 2: testing123 testing456");
-
-
 // the following ia a presence checker which waits for the chat log to exist so that it
 // can attach new commands which will start the mods we inject.  There are other ways to
 // do this like trigger-volumes, but this gives us more control and predictable behavior
@@ -25,10 +21,6 @@ if(document.querySelector("[class*=presence-log-in-room]") == null) {
 function checkPresence() {
 	
 	const watchedNode = document.querySelector("[class^=presence-log]")
-	//jcode
-	console.log("watched node: ")
-	console.log(watchedNode);
-	//
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
 		  if (mutation.addedNodes) {
@@ -70,7 +62,3 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 		console.log(fn + " is not a function");
 	}
 });
-
-function mod_test() {
-	console.log("MOD_TEST IS WORKING :D")
-}
