@@ -25,6 +25,10 @@ if(document.querySelector("[class*=presence-log-in-room]") == null) {
 function checkPresence() {
 	
 	const watchedNode = document.querySelector("[class^=presence-log]")
+	//jcode
+	console.log("watched node: ")
+	console.log(watchedNode);
+	//
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
 		  if (mutation.addedNodes) {
