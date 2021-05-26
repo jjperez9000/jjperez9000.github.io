@@ -20,21 +20,13 @@ if(document.querySelector("[class*=presence-log-in-room]") == null) {
 
 function checkPresence() {
 	
-	const watchedNode = document.querySelector(".Linkify");
-	console.log(watchedNode.innerHTML);
+	const watchedNode = document.querySelector("[class^=presence-log]");
+	console.log(watchedNode.textContent);
 	var observer = new MutationObserver(function(mutations) {
-		console.log("making mutation");
-		// mutations.forEach(function(mutation) {
-		// 	console.log("mutation: ")
-		// 	console.log(mutation.innerHTML);
-		// });
+		console.log("observation triggered:")
+		console.log(mutations.innerHTML);
 	});
-	observer.observe(document.body, {childList: true});
-
-	function chatMessage(message) {
-		console.log("new message: ");
-		console.log(message);
-	}
+	observer.observe(watchedNode, {childList: true});
 	// var observer = new MutationObserver(function(mutations) {
 	// 	mutations.forEach(function(mutation) {
 	// 	  if (mutation.addedNodes) {
