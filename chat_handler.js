@@ -23,10 +23,11 @@ function checkPresence() {
 	const watchedNode = document.querySelector(".Linkify");
 	console.log(watchedNode.innerHTML);
 	var observer = new MutationObserver(function(mutations) {
-		mutations.forEach(function(mutation) {
-			console.log("mutation: ")
-			console.log(mutation.innerHTML);
-		});
+		console.log("making mutation");
+		// mutations.forEach(function(mutation) {
+		// 	console.log("mutation: ")
+		// 	console.log(mutation.innerHTML);
+		// });
 	});
 	observer.observe(document.body, {childList: true});
 
@@ -50,7 +51,7 @@ function checkPresence() {
 	// observer.observe(watchedNode, {childList:true});
 	
 	// //once the mutation observer is attached to the presence-log we can clear the interval that attaches it
-	clearInterval(presenceIntervalCheck);
+	// clearInterval(presenceIntervalCheck);
 }
 
 // document.querySelector("a-scene").addEventListener("chatevent", e => {
