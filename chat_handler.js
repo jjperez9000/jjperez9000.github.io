@@ -1,6 +1,6 @@
-// the following ia a presence checker which waits for the chat log to exist so that it
-// can attach new commands which will start the mods we inject.  There are other ways to
-// do this like trigger-volumes, but this gives us more control and predictable behavior
+// // the following ia a presence checker which waits for the chat log to exist so that it
+// // can attach new commands which will start the mods we inject.  There are other ways to
+// // do this like trigger-volumes, but this gives us more control and predictable behavior
 
 var presenceIntervalCheck;
 
@@ -20,7 +20,7 @@ if(document.querySelector("[class*=presence-log-in-room]") == null) {
 
 function checkPresence() {
 	
-	const watchedNode = document.querySelector("[class*=presence-log]")
+	const watchedNode = document.querySelector("[class*=Linkfiy]")
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
 		  if (mutation.addedNodes) {
