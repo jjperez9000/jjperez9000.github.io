@@ -41,7 +41,7 @@ function checkPresence() {
 	observer.observe(watchedNode, {childList: true});
 	
 	// //once the mutation observer is attached to the presence-log we can clear the interval that attaches it
-	// clearInterval(presenceIntervalCheck);
+	clearInterval(presenceIntervalCheck);
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
