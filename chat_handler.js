@@ -69,10 +69,10 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 	// interface unless it's one we've added for that purpose.
 	
 	var fnstring = "mod_" + mySplit[1];
-
+	console.log("function string = " + fnstring);
 	// find object
 	var fn = window[fnstring];
-
+	
 	// is object a function?
 	if (typeof fn === "function"){
 		fn();
