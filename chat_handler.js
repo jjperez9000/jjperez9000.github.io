@@ -22,8 +22,6 @@ function checkPresence() {
 	
 	const watchedNode = document.querySelector("[class^=presence-log]")
 	var observer = new MutationObserver(function(mutations) {
-		console.log("here is the thing you want V");
-		console.log(mutations);
 		mutations.forEach(function(mutation) {
 		  if (mutation.addedNodes) {
 			for (var n of mutation.addedNodes){
