@@ -20,7 +20,8 @@ if(document.querySelector("[class*=presence-log-in-room]") == null) {
 
 function checkPresence() {
 	
-	const watchedNode = document.querySelector(".Linkify")
+	const watchedNode = document.querySelector(".Linkify");
+	console.log(watchedNode.innerHTML);
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
 		  if (mutation.addedNodes) {
