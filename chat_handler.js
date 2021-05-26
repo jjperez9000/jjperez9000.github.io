@@ -24,7 +24,7 @@ function checkPresence() {
 	console.log(watchedNode.textContent);
 	var observer = new MutationObserver(function(mutations) {
 		console.log("observation triggered:")
-		console.log(mutations.innerHTML);
+		console.log(mutations);
 	});
 	observer.observe(watchedNode, {childList: true});
 	// var observer = new MutationObserver(function(mutations) {
