@@ -20,7 +20,8 @@ if(document.querySelector("[class*=presence-log-in-room]") == null) {
 
 function checkPresence() {
 	
-	const watchedNode = document.querySelector("[class^=presence-log]")
+	const watchedNode = document.querySelector("[class^=linkify]")
+	console.log(watchedNode);
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
 		  if (mutation.addedNodes) {
@@ -36,7 +37,7 @@ function checkPresence() {
 	})
 	observer.observe(watchedNode, {childList:true});
 	
-	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
+	// once the mutation observer is attached to the presence-log we can clear the interval that attaches it
 	clearInterval(presenceIntervalCheck);
 }
 
