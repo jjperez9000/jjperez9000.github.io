@@ -1,6 +1,3 @@
-console.log("hello world! hellow world!");
-
-function mod_text() {
-    console.log("testing12345678");
+function mod_genius() {
+    console.log("John is a genius");
 }
-mod_text();
