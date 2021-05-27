@@ -5,14 +5,15 @@
 var chatButton = document.querySelectorAll("[class*=accent4]"); 
 console.log(chatButton);
 
-var presenceIntervalCheck;
+var buttonIntervalCheck;
+var buttonFound = false;
 
 if (document.querySelector("[class*=accent4]") == null) {
     console.log("chat button does not exist yet");
-    presenceIntervalCheck = setInterval(function() {
+    buttonIntervalCheck = setInterval(function() {
         if (document.querySelector("[class*=accent4]") != null) {
             console.log("found the button!!!!!!!!!!!!");
-            clearInterval(this);
+            clearInterval(buttonIntervalCheck);
         } else {
             console.log("looking for chat button");
         }
@@ -20,3 +21,4 @@ if (document.querySelector("[class*=accent4]") == null) {
 } else {
     console.log("found the button (on first try)");
 }
+
