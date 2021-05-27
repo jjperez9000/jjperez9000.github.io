@@ -6,12 +6,12 @@ var chatButton
 var chatOpen = false;
 var buttonIntervalCheck;
 
-if (document.querySelector('TextInput__icon-button__m5JFp') == null) {
+if (document.querySelector('.TextInput__icon-button__m5JFp') == null) {
     console.log("chat button does not exist yet");
     buttonIntervalCheck = setInterval(function() {
-        if (document.querySelector('TextInput__icon-button__m5JFp') != null) {
+        if (document.querySelector('.TextInput__icon-button__m5JFp') != null) {
             console.log("found an x button");
-            chatButton = document.querySelector('TextInput__icon-button__m5JFp');
+            chatButton = document.querySelector('.TextInput__icon-button__m5JFp');
             chatButton.onclick = function() {
                 console.log("window has been closed")
                 checkPresence();
