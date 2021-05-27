@@ -66,11 +66,6 @@ function checkPresence() {
 	clearInterval(presenceIntervalCheck);
 }
 
-document.querySelector("[class*=icon-button]").onclick = function() {
-	console.log("x button was clicked, doing the thing!");
-	checkPresence();
-}
-
 document.querySelector("a-scene").addEventListener("chatevent", e => {
 
 	var mySplit = e.detail.text.split(":");
