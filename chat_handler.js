@@ -66,6 +66,7 @@ function checkPresence() {
 	clearInterval(presenceIntervalCheck);
 }
 
+
 document.querySelector("a-scene").addEventListener("chatevent", e => {
 
 	var mySplit = e.detail.text.split(":");
