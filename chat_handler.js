@@ -5,19 +5,22 @@
 var presenceIntervalCheck;
 var observer;
 
-if(document.querySelector("[class*=presence-log-in-room]") == null) {
-	console.log("the log does not exist yet");
-	presenceIntervalCheck = setInterval(function(){ 
-		if(document.querySelector("[class*=presence-log-in-room]") != null ) {
-			console.log("found presence");
-			checkPresence();
-		}else{
-			console.log("checking presence");
-		}
-	}, 2000);
-}else{
-	checkPresence();
+function detectLog() {
+	if(document.querySelector("[class*=presence-log-in-room]") == null) {
+		console.log("the log does not exist yet");
+		presenceIntervalCheck = setInterval(function(){ 
+			if(document.querySelector("[class*=presence-log-in-room]") != null ) {
+				console.log("found presence");
+				checkPresence();
+			}else{
+				console.log("checking presence");
+			}
+		}, 2000);
+	}else{
+		checkPresence();
+	}
 }
+detectLog();
 
 function checkPresence() {
 	

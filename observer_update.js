@@ -14,7 +14,7 @@ if (document.querySelector('.TextInput__icon-button__m5JFp') == null) {
             chatButton = document.querySelector('.TextInput__icon-button__m5JFp');
             chatButton.onclick = function() {
                 console.log("window has been closed")
-                checkPresence();
+                detectLog();
             
             }
         } else {
