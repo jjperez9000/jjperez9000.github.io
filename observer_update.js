@@ -3,6 +3,7 @@
 // 	checkPresence();
 // }
 var chatButton
+var chatOpen = false;
 var buttonIntervalCheck;
 
 if (document.querySelector("[class*=accent4]") == null) {
@@ -11,7 +12,19 @@ if (document.querySelector("[class*=accent4]") == null) {
         if (document.querySelector("[class*=accent4]") != null) {
             console.log("found the button!!!!!!!!!!!!");
             chatButton = document.querySelector("[class*=accent4]");
-            chatButton.onclick = function() {console.log("button does thing");}
+            chatButton.onclick = function() {
+            
+            
+                console.log("button does thing");
+                if (chatOpen) {
+                    chatOpen = false;
+                    checkPresence();
+                } else {
+                    chatOpen = true;
+                }
+                
+            
+            }
             clearInterval(buttonIntervalCheck);
         } else {
             console.log("looking for chat button");
