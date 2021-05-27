@@ -14,9 +14,6 @@ if (document.querySelector("[class*=accent4]") == null) {
             console.log("found the button!!!!!!!!!!!!");
 
             document.querySelector('.ToolbarButton__toolbar-button__1sqrf ToolbarButton__accent4__3i3tf').id = "chat_button";
-            document.getElementById("chat_button").onclick = function() {
-                console.log("you clicked the button!!!!");
-            }
 
             clearInterval(buttonIntervalCheck);
         } else {
@@ -27,3 +24,6 @@ if (document.querySelector("[class*=accent4]") == null) {
     console.log("found the button (on first try)");
 }
 
+document.getElementById("chat_button").onclick = function() {
+    console.log("you clicked the button!!!!");
+}
