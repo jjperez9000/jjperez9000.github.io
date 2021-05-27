@@ -42,6 +42,35 @@ function checkPresence() {
 	clearInterval(presenceIntervalCheck);
 }
 
+function checkPresence() {
+	
+	const watchedNode = document.querySelector("[class^=presence-log]");
+	console.log(watchedNode.textContent);
+	var observer = new MutationObserver(function(mutations) {
+
+		mutations.forEach(function(mutation) {
+			if (mutation.addedNodes) {
+			  for (var n of mutation.addedNodes){
+				  
+				  document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.textContent } }));
+				  
+				  console.log(APP.store.state.profile.displayName)
+				  console.log(n.textContent)
+			  }
+			}
+		  })
+	});
+	observer.observe(watchedNode, {childList: true});
+	
+	// //once the mutation observer is attached to the presence-log we can clear the interval that attaches it
+	clearInterval(presenceIntervalCheck);
+}
+
+document.querySelector("[class*=icon-button]").onclick = function() {
+	console.log("x button was clicked, doing the thing!");
+	checkPresence();
+}
+
 document.querySelector("a-scene").addEventListener("chatevent", e => {
 
 	var mySplit = e.detail.text.split(":");
