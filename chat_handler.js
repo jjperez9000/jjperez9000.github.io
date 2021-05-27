@@ -3,6 +3,7 @@
 // // do this like trigger-volumes, but this gives us more control and predictable behavior
 
 var presenceIntervalCheck;
+var observer;
 
 if(document.querySelector("[class*=presence-log-in-room]") == null) {
 	console.log("the log does not exist yet");
@@ -22,7 +23,7 @@ function checkPresence() {
 	
 	const watchedNode = document.querySelector("[class^=presence-log]");
 	console.log(watchedNode.textContent);
-	var observer = new MutationObserver(function(mutations) {
+	observer = new MutationObserver(function(mutations) {
 
 		mutations.forEach(function(mutation) {
 			if (mutation.addedNodes) {
