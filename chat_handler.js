@@ -7,7 +7,13 @@ var observer;
 var groupObserver;
 var closedObserver;
 
-function detectLog() {
+function detectLog(wait) {
+	if (wait) {
+		console.log("waiting ~~~~~~~~~~~~~~~")
+		setTimeout(null, 500);
+	} else {
+		console.log("not waiting ~~~~~~~~~~~")
+	}
 	console.log("detecting log start");
 	if(document.querySelector("[class*=message-list]") == null) {
 		console.log("the log does not exist yet");
@@ -24,7 +30,7 @@ function detectLog() {
 	}
 }
 
-detectLog();
+detectLog(false);
 
 function checkPresence() {
 		
@@ -76,7 +82,7 @@ function checkPresence() {
 	document.querySelector("[class*=icon-button]").onclick = function() {
 		console.log("window closed");
 		console.log(document.querySelector("[class*=message-list]"))
-		detectLog();
+		detectLog(true);
 	}
 }
 
