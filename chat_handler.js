@@ -6,6 +6,7 @@ var presenceIntervalCheck;
 var buttonIntervalCheck;
 var observer;
 var groupObserver;
+var currentGroup = null;
 
 function detectLog() {
 	console.log("the log does not exist yet");
@@ -14,6 +15,8 @@ function detectLog() {
 			console.log("found presence");
 
 			document.querySelector("[class*=icon-button]").onclick = function() {
+				groupObserver.disconnect();
+				observer.disconnect();
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
 				detectLog();
@@ -33,6 +36,12 @@ function checkPresence() {
 	const watchedNode = document.querySelector("[class*=message-list]");
 
 	console.log(watchedNode.className);
+
+	if (currentGroup != null) {
+		const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1];
+		groupObserver.observe(watchedNode2, {childList: true});
+	}
+
 	observer = new MutationObserver(function(mutations) {
 
 		mutations.forEach(function(mutation) {
