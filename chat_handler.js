@@ -16,7 +16,6 @@ function detectLog() {
 			document.querySelector("[class*=icon-button]").onclick = function() {
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
-				buttonIntervalCheck();
 				detectLog();
 			}
 
