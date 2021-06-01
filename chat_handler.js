@@ -4,6 +4,7 @@
 
 var presenceIntervalCheck;
 var observer;
+var groupObserver;
 
 // function detectLog() {
 if(document.querySelector("[class*=message-list]") == null) {
@@ -24,7 +25,8 @@ if(document.querySelector("[class*=message-list]") == null) {
 
 function checkPresence() {
 	
-	const watchedNode = document.querySelector("[class*=Linkify]");
+	const watchedNode = document.querySelector("[class*=message-list]");
+	
 	// console.log(watchedNode.textContent);
 	console.log(watchedNode.className);
 	observer = new MutationObserver(function(mutations) {
@@ -32,19 +34,25 @@ function checkPresence() {
 		mutations.forEach(function(mutation) {
 			
 			if (mutation.addedNodes) {
-			  for (var n of mutation.addedNodes){
-				console.log(n.innerText);
-				console.log(n.lastChild.innerText);
-				document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.innerText } }));
-				console.log(n.lastChild.innerText);
-				//   console.log(APP.store.state.profile.displayName)
-				//   console.log(n.className)
-				//   console.log(n.textContent)
-			  }
+				for (var n of mutation.addedNodes){
+					console.log(n);
+					// groupObserver = new MutationObserver(function (mutations) {
+					// 	mutations.forEach(function(mutation) {
+
+					// 	})
+					// }
+					// document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.innerText } }));
+					// console.log(n.lastChild.innerText);
+
+				}
 			}
 		  })
 	});
+
+
 	observer.observe(watchedNode, {childList: true});
+	
+	
 	
 	// //once the mutation observer is attached to the presence-log we can clear the interval that attaches it
 	clearInterval(presenceIntervalCheck);
