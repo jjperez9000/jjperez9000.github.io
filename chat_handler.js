@@ -64,10 +64,6 @@ function checkPresence() {
 				}
 			}
 		})
-		document.querySelector("[class*=icon-button]").onclick = function() {
-			detectLog();
-			console.log("window closed");
-		}
 	});
 
 
@@ -76,6 +72,10 @@ function checkPresence() {
 	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
 	console.log("detectLog stopped");
 	clearInterval(presenceIntervalCheck);
+	document.querySelector("[class*=icon-button]").onclick = function() {
+		detectLog();
+		console.log("window closed");
+	}
 }
 
 
