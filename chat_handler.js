@@ -35,14 +35,23 @@ function checkPresence() {
 			
 			if (mutation.addedNodes) {
 				for (var n of mutation.addedNodes){
+					console.log("new group discovered :)")
 					console.log(n);
-					// groupObserver = new MutationObserver(function (mutations) {
-					// 	mutations.forEach(function(mutation) {
+					const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1]
+					groupObserver = new MutationObserver(function(mutations) {
 
-					// 	})
-					// }
-					// document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.innerText } }));
-					// console.log(n.lastChild.innerText);
+						mutations.forEach(function(mutation) {
+							
+							if (mutation.addedNodes) {
+								for (var i of mutation.addedNodes){
+									console.log("group observe triggered :O")
+									console.log(i);
+								
+								}
+							}
+						  })
+					});
+					groupObserver.observe(watchedNode2, {childList: true});
 
 				}
 			}
@@ -52,7 +61,11 @@ function checkPresence() {
 
 	observer.observe(watchedNode, {childList: true});
 	
-	
+	const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1]
+
+
+
+	groupObserver.observe(watchedNode2, {childList: true});
 	
 	// //once the mutation observer is attached to the presence-log we can clear the interval that attaches it
 	clearInterval(presenceIntervalCheck);
