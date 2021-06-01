@@ -5,29 +5,29 @@
 var presenceIntervalCheck;
 var observer;
 var groupObserver;
+var closedObserver;
 
-// function detectLog() {
-if(document.querySelector("[class*=message-list]") == null) {
-	console.log("the log does not exist yet");
-	presenceIntervalCheck = setInterval(function(){ 
-		if(document.querySelector("[class*=message-list]") != null ) {
-			console.log("found presence");
-			checkPresence();
-		}else{
-			console.log("checking presence");
-		}
-	}, 2000);
-}else{
-	checkPresence();
+function detectLog() {
+	if(document.querySelector("[class*=message-list]") == null) {
+		console.log("the log does not exist yet");
+		presenceIntervalCheck = setInterval(function(){ 
+			if(document.querySelector("[class*=message-list]") != null ) {
+				console.log("found presence");
+				checkPresence();
+			}else{
+				console.log("checking presence");
+			}
+		}, 2000);
+	}else{
+		checkPresence();
+	}
 }
-// }
-// detectLog();
+detectLog();
 
 function checkPresence() {
 	
 	const watchedNode = document.querySelector("[class*=message-list]");
 	
-	// console.log(watchedNode.textContent);
 	console.log(watchedNode.className);
 	observer = new MutationObserver(function(mutations) {
 
@@ -41,6 +41,8 @@ function checkPresence() {
 
 					document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.textContent } }));		
 					const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1]
+					
+
 					groupObserver = new MutationObserver(function(mutations) {
 
 						mutations.forEach(function(mutation) {
@@ -59,7 +61,11 @@ function checkPresence() {
 					groupObserver.observe(watchedNode2, {childList: true});
 				}
 			}
-		  })
+		})
+		document.querySelector("[class*=icon-button]").onclick = function() {
+			detectLog();
+			console.log("window closed");
+		}
 	});
 
 
@@ -68,6 +74,7 @@ function checkPresence() {
 	// //once the mutation observer is attached to the presence-log we can clear the interval that attaches it
 	clearInterval(presenceIntervalCheck);
 }
+
 
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
