@@ -39,6 +39,7 @@ function checkPresence() {
 
 	if (currentGroup != null) {
 		const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1];
+		groupObserver.disconnect();
 		groupObserver.observe(watchedNode2, {childList: true});
 	}
 
@@ -54,7 +55,7 @@ function checkPresence() {
 
 					document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.textContent } }));		
 					const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1]
-					
+					currentGroup = watchedNode2;
 
 					groupObserver = new MutationObserver(function(mutations) {
 
