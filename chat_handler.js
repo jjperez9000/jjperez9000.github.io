@@ -25,7 +25,8 @@ if(document.querySelector("[class*=message-list]") == null) {
 function checkPresence() {
 	
 	const watchedNode = document.querySelector("[class*=message-list]");
-	console.log(watchedNode.textContent);
+	// console.log(watchedNode.textContent);
+	console.log(watchedNode.className);
 	observer = new MutationObserver(function(mutations) {
 
 		mutations.forEach(function(mutation) {
@@ -35,6 +36,7 @@ function checkPresence() {
 				  document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.textContent } }));
 				  
 				  console.log(APP.store.state.profile.displayName)
+				  console.log(n.className)
 				  console.log(n.textContent)
 			  }
 			}
