@@ -8,6 +8,7 @@ var groupObserver;
 var closedObserver;
 
 function detectLog() {
+	console.log("detecting log start");
 	if(document.querySelector("[class*=message-list]") == null) {
 		console.log("the log does not exist yet");
 		presenceIntervalCheck = setInterval(function(){ 
@@ -22,6 +23,7 @@ function detectLog() {
 		checkPresence();
 	}
 }
+
 detectLog();
 
 function checkPresence() {
@@ -71,7 +73,8 @@ function checkPresence() {
 
 	observer.observe(watchedNode, {childList: true});
 	
-	// //once the mutation observer is attached to the presence-log we can clear the interval that attaches it
+	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
+	console.log("detectLog stopped");
 	clearInterval(presenceIntervalCheck);
 }
 
