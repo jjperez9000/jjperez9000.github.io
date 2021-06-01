@@ -34,6 +34,7 @@ function checkPresence() {
 		mutations.forEach(function(mutation) {
 			
 			if (mutation.addedNodes) {
+				console.log(mutation.addedNodes.length)
 				for (var n of mutation.addedNodes){
 					console.log("new group discovered :)")
 					console.log(n);
