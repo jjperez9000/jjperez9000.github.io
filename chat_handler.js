@@ -30,16 +30,22 @@ function checkPresence() {
 	observer = new MutationObserver(function(mutations) {
 
 		mutations.forEach(function(mutation) {
-			if (mutation.addedNodes) {
-			  for (var n of mutation.addedNodes){
-				  
-				  document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.textContent } }));
-				  
-				  console.log(APP.store.state.profile.displayName)
-				  console.log(n.className)
-				  console.log(n.textContent)
-			  }
+			console.log(mutation);
+			if (mutation.className === "Linkify") {
+				console.log("linkify found");
+				console.log(document.querySelector("[class*=Linkify]"));
+
 			}
+			// if (mutation.addedNodes) {
+			//   for (var n of mutation.addedNodes){
+				  
+			// 	  document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.textContent } }));
+				  
+			// 	  console.log(APP.store.state.profile.displayName)
+			// 	  console.log(n.className)
+			// 	  console.log(n.textContent)
+			//   }
+			// }
 		  })
 	});
 	observer.observe(watchedNode, {childList: true});
