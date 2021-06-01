@@ -12,6 +12,14 @@ function detectLog() {
 	presenceIntervalCheck = setInterval(function(){ 
 		if(document.querySelector("[class*=message-list]") != null ) {
 			console.log("found presence");
+
+			document.querySelector("[class*=icon-button]").onclick = function() {
+				console.log("window closed");
+				console.log(document.querySelector("[class*=message-list]"))
+				buttonIntervalCheck();
+				detectLog();
+			}
+
 			checkPresence();
 		}else{
 			console.log("checking presence");
@@ -20,25 +28,6 @@ function detectLog() {
 }
 
 detectLog();
-
-buttonIntervalCheck = setInterval(function(){
-	if (document.querySelector("[class*=icon-button]")) {
-		console.log("button found");
-		document.querySelector("[class*=icon-button]").onclick = function() {
-			console.log("window closed");
-			console.log(document.querySelector("[class*=message-list]"))
-			buttonIntervalCheck();
-			detectLog();
-		}
-		clearInterval(buttonIntervalCheck);
-	} else {
-		console.log("button not yet found");
-	}
-}, 2000);
-
-
-
-
 
 function checkPresence() {
 	
