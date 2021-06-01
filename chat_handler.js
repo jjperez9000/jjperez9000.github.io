@@ -71,7 +71,7 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 	// }else{
 	// 	console.log(fn + " is not a function");
 
-	var myMessage = e;
+	var myMessage = e.detail.text;
 	
 	var fnstring = "mod_" + myMessage;
 	console.log("function string = " + fnstring);
