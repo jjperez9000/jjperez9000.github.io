@@ -21,17 +21,17 @@ function detectLog() {
 
 detectLog();
 
-buttonIntervalCheck = setInterval(function(){
-	if (document.querySelector("[class*=accent4]")) {
-		console.log("button found");
-		document.querySelector("[class*=accent4]").onclick = function() {
-			console.log("chat button clicked, neat");
-		}
-		clearInterval(buttonIntervalCheck);
-	} else {
-		console.log("button not yet found");
-	}
-}, 2000);
+// buttonIntervalCheck = setInterval(function(){
+// 	if (document.querySelector("[class*=accent4]")) {
+// 		console.log("button found");
+// 		document.querySelector("[class*=accent4]").onclick = function() {
+// 			console.log("chat button clicked, neat");
+// 		}
+// 		clearInterval(buttonIntervalCheck);
+// 	} else {
+// 		console.log("button not yet found");
+// 	}
+// }, 2000);
 
 
 
