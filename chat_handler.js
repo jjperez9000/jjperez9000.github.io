@@ -65,12 +65,6 @@ function checkPresence() {
 
 	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
 	clearInterval(presenceIntervalCheck);
-
-	document.querySelector("[class*=icon-button]").onclick = function() {
-		console.log("window closed");
-		console.log(document.querySelector("[class*=message-list]"))
-		detectLog();
-	}
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
@@ -94,6 +88,9 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 	}
 });
 
+document.querySelector("[class*=accent4]").onclick = function() {
+	console.log("chat button clicked, neat");
+}
 
 // document.querySelector("[class*=icon-button]").onclick = function() {
 // 	console.log("window closed");
