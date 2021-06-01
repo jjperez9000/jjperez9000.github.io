@@ -38,6 +38,8 @@ function checkPresence() {
 				for (var n of mutation.addedNodes){
 					console.log("new group discovered :)")
 					console.log(n);
+
+					document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.textContent } }));		
 					const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1]
 					groupObserver = new MutationObserver(function(mutations) {
 
@@ -47,7 +49,8 @@ function checkPresence() {
 								for (var i of mutation.addedNodes){
 									console.log("group observe triggered :O")
 									console.log(i);
-									
+
+									document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: i.textContent } }));									
 								
 								}
 							}
