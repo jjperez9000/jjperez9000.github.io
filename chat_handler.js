@@ -28,8 +28,14 @@ detectLog();
 
 function checkPresence() {
 	
+	document.querySelector("[class*=icon-button]").onclick = function() {
+		console.log("window closed");
+		document.querySelector("[class*=message-list]") = null;
+		detectLog();
+	}
+
 	const watchedNode = document.querySelector("[class*=message-list]");
-	
+
 	console.log(watchedNode.className);
 	observer = new MutationObserver(function(mutations) {
 
@@ -72,12 +78,7 @@ function checkPresence() {
 	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
 	console.log("detectLog stopped");
 	clearInterval(presenceIntervalCheck);
-	
-	document.querySelector("[class*=icon-button]").onclick = function() {
-		document.querySelector("[class*=message-list]") = null;
-		detectLog();
-		console.log("window closed");
-	}
+
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
