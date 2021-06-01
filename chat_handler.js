@@ -27,6 +27,7 @@ buttonIntervalCheck = setInterval(function(){
 		document.querySelector("[class*=accent4]").onclick = function() {
 			console.log("chat button clicked, neat");
 		}
+		clearInterval(buttonIntervalCheck);
 	} else {
 		console.log("button not yet found");
 	}
