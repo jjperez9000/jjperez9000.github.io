@@ -21,17 +21,22 @@ function detectLog() {
 
 detectLog();
 
-// buttonIntervalCheck = setInterval(function(){
-// 	if (document.querySelector("[class*=accent4]")) {
-// 		console.log("button found");
-// 		document.querySelector("[class*=accent4]").onclick = function() {
-// 			console.log("chat button clicked, neat");
-// 		}
-// 		clearInterval(buttonIntervalCheck);
-// 	} else {
-// 		console.log("button not yet found");
-// 	}
-// }, 2000);
+buttonIntervalCheck = setInterval(function(){
+	if (document.querySelector("[class*=icon-button]")) {
+		console.log("button found");
+		document.querySelector("[class*=icon-button]").onclick = function() {
+			console.log("window closed");
+			console.log(document.querySelector("[class*=message-list]"))
+			buttonIntervalCheck();
+			detectLog();
+		}
+		clearInterval(buttonIntervalCheck);
+	} else {
+		console.log("button not yet found");
+	}
+}, 2000);
+
+
 
 
 
@@ -79,7 +84,7 @@ function checkPresence() {
 	observer.observe(watchedNode, {childList: true});
 
 	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
-	// clearInterval(presenceIntervalCheck);
+	clearInterval(presenceIntervalCheck);
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
@@ -102,9 +107,3 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 		console.log(fn + " is not a function");
 	}
 });
-
-// document.querySelector("[class*=icon-button]").onclick = function() {
-// 	console.log("window closed");
-// 	console.log(document.querySelector("[class*=message-list]"))
-// 	detectLog();
-// }
