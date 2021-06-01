@@ -68,30 +68,15 @@ function checkPresence() {
 	observer.observe(watchedNode, {childList: true});
 
 	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
-	clearInterval(presenceIntervalCheck);
+	lcearInterval(presenceIntervalCheck);
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
-
-	// var mySplit = e.detail.text.split(":");
-	// console.log("e.detail.text = " + mySplit[1]);
-	
 	
 	// // function we want to run we add mod_ to the string to isolate our custom functions
 	// // from the global namespace and prevent people from running functions through chat
 	// // interface unless it's one we've added for that purpose.
 	
-	// var fnstring = "mod_" + mySplit[1];
-	// console.log("function string = " + fnstring);
-	// // find object
-	// var fn = window[fnstring];
-	
-	// // is object a function?
-	// if (typeof fn === "function"){
-	// 	fn();
-	// }else{
-	// 	console.log(fn + " is not a function");
-
 	var myMessage = e.detail.text;
 	
 	var fnstring = "mod_" + myMessage;
@@ -106,3 +91,10 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 		console.log(fn + " is not a function");
 	}
 });
+
+
+// document.querySelector("[class*=icon-button]").onclick = function() {
+// 	console.log("window closed");
+// 	console.log(document.querySelector("[class*=message-list]"))
+// 	detectLog();
+// }
