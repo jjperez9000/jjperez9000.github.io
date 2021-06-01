@@ -5,16 +5,8 @@
 var presenceIntervalCheck;
 var observer;
 var groupObserver;
-var closedObserver;
 
-function detectLog(wait) {
-	if (wait) {
-		console.log("waiting ~~~~~~~~~~~~~~~")
-		setTimeout(null, 500);
-	} else {
-		console.log("not waiting ~~~~~~~~~~~")
-	}
-	console.log("detecting log start");
+function detectLog() {
 	if(document.querySelector("[class*=message-list]") == null) {
 		console.log("the log does not exist yet");
 		presenceIntervalCheck = setInterval(function(){ 
@@ -30,14 +22,10 @@ function detectLog(wait) {
 	}
 }
 
-detectLog(false);
+detectLog();
 
 function checkPresence() {
-		
-	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
-	console.log("detectLog stopped");
-	clearInterval(presenceIntervalCheck);
-
+	
 	const watchedNode = document.querySelector("[class*=message-list]");
 
 	console.log(watchedNode.className);
@@ -74,16 +62,13 @@ function checkPresence() {
 				}
 			}
 		})
-	});
 
+	});
 
 	observer.observe(watchedNode, {childList: true});
 
-	document.querySelector("[class*=icon-button]").onclick = function() {
-		console.log("window closed");
-		console.log(document.querySelector("[class*=message-list]"))
-		detectLog(true);
-	}
+	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
+	clearInterval(presenceIntervalCheck);
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
