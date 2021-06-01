@@ -3,6 +3,7 @@
 // do this like trigger-volumes, but this gives us more control and predictable behavior
 
 var presenceIntervalCheck;
+var buttonIntervalCheck;
 var observer;
 var groupObserver;
 
@@ -19,6 +20,19 @@ function detectLog() {
 }
 
 detectLog();
+
+buttonIntervalCheck = setInterval(function(){
+	if (document.querySelector("[class*=accent4]")) {
+		console.log("button found");
+		document.querySelector("[class*=accent4]").onclick = function() {
+			console.log("chat button clicked, neat");
+		}
+	} else {
+		console.log("button not yet found");
+	}
+}, 2000);
+
+
 
 function checkPresence() {
 	
@@ -87,10 +101,6 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 		console.log(fn + " is not a function");
 	}
 });
-
-document.querySelector("[class*=accent4]").onclick = function() {
-	console.log("chat button clicked, neat");
-}
 
 // document.querySelector("[class*=icon-button]").onclick = function() {
 // 	console.log("window closed");
