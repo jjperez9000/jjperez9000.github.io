@@ -47,9 +47,7 @@ function checkPresence() {
 		mutations.forEach(function(mutation) {
 			
 			if (mutation.addedNodes) {
-				console.log(mutation.addedNodes.length)
 				for (var n of mutation.addedNodes){
-					console.log("new group discovered :)")
 					console.log(n);
 
 					document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.textContent } }));		
@@ -62,11 +60,7 @@ function checkPresence() {
 							
 							if (mutation.addedNodes) {
 								for (var i of mutation.addedNodes){
-									console.log("group observe triggered :O")
-									console.log(i);
-
 									document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: i.textContent } }));									
-								
 								}
 							}
 						  })
