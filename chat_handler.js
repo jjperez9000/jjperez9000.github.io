@@ -3,7 +3,6 @@
 // do this like trigger-volumes, but this gives us more control and predictable behavior
 
 var presenceIntervalCheck;
-var buttonIntervalCheck;
 var observer;
 var groupObserver;
 var currentGroup = null;
