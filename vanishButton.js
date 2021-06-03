@@ -9,7 +9,7 @@ document.addEventListener("click", function(){
 })
 
 function mod_hideRoom() {
-    if (document.querySelector("#" + lastItemClicked.id).visible) {
+    if (document.querySelector("#" + lastItemClicked.id).getAttribute("visible")) {
         document.querySelector("#" + lastItemClicked.id).setAttribute("visible", false);
     } else {
         document.querySelector("#" + lastItemClicked.id).setAttribute("visible", true);
