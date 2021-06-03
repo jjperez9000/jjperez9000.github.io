@@ -7,6 +7,11 @@ var observer;
 var groupObserver;
 var currentGroup = null;
 
+// var temp = setInterval(function() {
+// 	console.log(AFRAME.scenes[0].systems.interaction);
+// 	console.log(AFRAME.scenes[0].systems.userinput);
+// }, 1000);
+
 function detectLog() {
 	console.log("the log does not exist yet");
 	presenceIntervalCheck = setInterval(function(){ 
@@ -23,7 +28,7 @@ function detectLog() {
 
 			checkPresence();
 		}else{
-			console.log("checking presence");
+			// console.log("checking presence");
 		}
 	}, 2000);
 }

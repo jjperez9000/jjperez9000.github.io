@@ -9,3 +9,7 @@ function mod_hideRoom() {
         visible = true;
     }
 }
+
+document.addEventListener("click", function(){
+    console.log(AFRAME.scenes[0].systems.interaction.state.rightRemote.held);
+})
