@@ -1,14 +1,10 @@
 
-var visible = true;
 var lastItemClicked;
 function mod_hideRoom() {
-    console.log("#" + lastItemClicked.id);
-    if (visible) {
+    if (document.querySelector("#" + lastItemClicked.id).visible) {
         document.querySelector("#" + lastItemClicked.id).setAttribute("visible", false);
-        visible = false;
     } else {
-        document.querySelector("#" + lastItemClicked.id).setAttribute("visible", true)
-        visible = true;
+        document.querySelector("#" + lastItemClicked.id).setAttribute("visible", true);
     }
 }
 
