@@ -47,9 +47,9 @@ function inject_createInteractiveBall() {
 	// interactions.  the type can be dynamic or static.  collision filters and
 	// masks are used to limit what objects can collide with.  See the body-helper
 	// component for more information
-	let bh = document.createAttribute("body-helper");
-	bh.value = "type: dynamic; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
-	newEntity.setAttributeNode(bh);
+	// let bh = document.createAttribute("body-helper");
+	// bh.value = "type: dynamic; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
+	// newEntity.setAttributeNode(bh);
 				
 	// An object needs to have geometry in order to be visible and work with physics
 	// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
