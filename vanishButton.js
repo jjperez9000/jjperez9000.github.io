@@ -47,6 +47,8 @@ function inject_createInteractiveBall() {
 	// interactions.  the type can be dynamic or static.  collision filters and
 	// masks are used to limit what objects can collide with.  See the body-helper
 	// component for more information
+
+    // remove physics
 	// let bh = document.createAttribute("body-helper");
 	// bh.value = "type: dynamic; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
 	// newEntity.setAttributeNode(bh);
@@ -66,7 +68,7 @@ function inject_createInteractiveBall() {
 				
 	// set the unowned body kinematic component for the object since it's networked
 	// and physics related.
-	newEntity.setAttribute("set-unowned-body-kinematic", "");
+	// newEntity.setAttribute("set-unowned-body-kinematic", "");
 	// sets the remote hover target component on the object
 	newEntity.setAttribute("is-remote-hover-target", "");
 				
