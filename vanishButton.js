@@ -103,6 +103,7 @@ function inject_createInteractiveBall() {
 	//add the camera-cube-env component
 	// newEntity.setAttribute("camera-cube-env", "");
 
+    //test :)
     newEntity.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
 				
 	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
