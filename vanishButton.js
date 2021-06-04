@@ -103,10 +103,10 @@ function inject_createInteractiveBall() {
 	//add the camera-cube-env component
 	// newEntity.setAttribute("camera-cube-env", "");
     
-    //test :)
-    newEntity.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
-    console.log("newEntity's floating attributes");
-	console.log(newEntity.getAttribute("floaty-object"));
+    // //test :)
+    // newEntity.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
+    // console.log("newEntity's floating attributes");
+	// console.log(newEntity.getAttribute("floaty-object"));
 	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
 	newTemplate.content.appendChild(newEntity);
 				
@@ -172,8 +172,7 @@ function mod_addBall(){
 		el.setAttribute("networked", { template: "#interactable-ball-media" } )
 		el.object3D.position.y = 2;
 		AFRAME.scenes[0].appendChild(el)
-        console.log("Elements's floating attributes");
-        console.log(el.getAttribute("floaty-object"));
+        el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
 		
 	}else{
 		console.log("a ball already exists");
