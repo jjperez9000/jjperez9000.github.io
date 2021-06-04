@@ -52,6 +52,7 @@ function inject_createInteractiveBall() {
 	// let bh = document.createAttribute("body-helper");
 	// bh.value = "type: dynamic; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
 	// newEntity.setAttributeNode(bh);
+    newEntity.setAttribute("floaty-object", { reduceAngularFloat: true, releaseGravity: -1 });
 				
 	// An object needs to have geometry in order to be visible and work with physics
 	// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
