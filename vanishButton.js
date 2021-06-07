@@ -55,7 +55,7 @@ function inject_createInteractiveBall() {
 	// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
 	bh = document.createAttribute("geometry");
 	// create a sphere geometry with a radius of 0.5 meters
-	bh.value = "primitive: sphere; radius: 0.5";
+	bh.value = "primitive: sphere; radius: 0.2";
 	newEntity.setAttributeNode(bh);
 				
 	// reuse the same bh variable for a material attribute to color the geometry
@@ -179,3 +179,5 @@ function mod_addBall(){
 	}
 	
 }
+
+<a-entity class="snap-button" mixin="rounded-action-button" is-remote-hover-target="" tags="singleActionButton: true;" position="0 0.15 0.08" scale="0.75 0.75 0.75" slice9="" text-button=""><a-entity sprite="" class="snap-icon" icon-button="image: snap_camera.png; hoverImage: snap_camera.png;" scale="0.2 0.2 0.2" position="0 0.002 0.001"></a-entity></a-entity>
