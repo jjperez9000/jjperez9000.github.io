@@ -32,6 +32,10 @@ function inject_slideshow_template() {
 	tempAtt = document.createAttribute("owned-object-limiter");
 	tempAtt.value = "counter: #media-counter";
 	newEntity.setAttributeNode(tempAtt);
+
+	newEntity.setAttribute("set-unowned-body-kinematic", "");
+	// sets the remote hover target component on the object
+	newEntity.setAttribute("is-remote-hover-target", "");
 			
 	// sets the remote hover target component on the object
 
@@ -41,7 +45,7 @@ function inject_slideshow_template() {
 	// qualities of the entity.  We can reuse tempAtt to set all it's values
 	tempAtt = document.createAttribute("tags")
 	// set it to be a hand collision target, holdable, give it a hand constraint, a remote constraint, and set to be inspectable with a right click.
-	tempAtt.value = "isHandCollisionTarget: false; isHoldable: true; offersHandConstraint: false; offersRemoteConstraint: false; inspectable: true; singleActionButton:true; isStatic: true;togglesHoveredActionSet: true"
+	tempAtt.value = "isHandCollisionTarget: true; isHoldable: true; offersHandConstraint: true; offersRemoteConstraint: true; inspectable: true;";
 	newEntity.setAttributeNode(tempAtt);
 	
 	//isStatic: true; togglesHoveredActionSet: true; inspectable: true;
