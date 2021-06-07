@@ -51,16 +51,7 @@ function inject_createInteractiveBall() {
 	// let bh = document.createAttribute("body-helper");
 	// bh.value = "type: kinematic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 31; angularDamping: 0.01; angularSleepingThreshold: 2.5; gravity:";
 	// newEntity.setAttributeNode(bh);
-	newEntity.setAttribute("body-helper", {
-		type: "kinematic",
-		mass: 0.001,
-		collisionFilterGroup: 1,
-		collisionFilterMask: 31,
-		angularDamping: 0.01,
-		linearDamping: 0.01,
-		angularSleepingThreshold: 1.6,
-		gravity: { x: 0, y:0, z:0 }
-	})
+
 				
 	// An object needs to have geometry in order to be visible and work with physics
 	// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
@@ -183,8 +174,17 @@ function mod_addBall(){
 		el.setAttribute("networked", { template: "#interactable-ball-media" } )
 		el.object3D.position.y = 2;
 		AFRAME.scenes[0].appendChild(el)
-        el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
-		
+        el.setAttribute("floaty-object", "modifyGravityOnRelease: false; autoLockOnLoad: true;");
+		el.setAttribute("body-helper", {
+			type: "kinematic",
+			mass: 0.001,
+			collisionFilterGroup: 1,
+			collisionFilterMask: 31,
+			angularDamping: 0.01,
+			linearDamping: 0.01,
+			angularSleepingThreshold: 1.6,
+			gravity: { x: 0, y:0, z:0 }
+		})
 	}else{
 		console.log("a ball already exists");
 	}
