@@ -19,7 +19,7 @@ function detectLog() {
 			console.log("found presence");
 
 			document.querySelector("[class*=icon-button]").onclick = function() {
-				groupObserver.disconnect();
+				// groupObserver.disconnect();
 				observer.disconnect();
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
@@ -43,7 +43,7 @@ function checkPresence() {
 
 	if (currentGroup != null) {
 		const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1];
-		groupObserver.disconnect();
+		// groupObserver.disconnect();
 		groupObserver.observe(watchedNode2, {childList: true});
 	}
 

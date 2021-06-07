@@ -48,16 +48,26 @@ function inject_createInteractiveBall() {
 	// interactions.  the type can be dynamic or static.  collision filters and
 	// masks are used to limit what objects can collide with.  See the body-helper
 	// component for more information
-	let bh = document.createAttribute("body-helper");
-	bh.value = "type: dynamic; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
-	newEntity.setAttributeNode(bh);
+	// let bh = document.createAttribute("body-helper");
+	// bh.value = "type: kinematic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 31; angularDamping: 0.01; angularSleepingThreshold: 2.5; gravity:";
+	// newEntity.setAttributeNode(bh);
+	newEntity.setAttribute("body-helper", {
+		type: kinematic,
+		mass: 0.001,
+		collisionFilterGroup: 1,
+		collisionFilterMask: 31,
+		angularDamping: 0.01,
+		linearDamping: 0.01,
+		angularSleepingThreshold: 1.6,
+		gravity: { x: 0, y:0, z:0 }
+	})
 				
 	// An object needs to have geometry in order to be visible and work with physics
 	// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
-	bh = document.createAttribute("geometry");
-	// create a sphere geometry with a radius of 0.5 meters
-	bh.value = "primitive: sphere; radius: 0.2";
-	newEntity.setAttributeNode(bh);
+	// bh = document.createAttribute("geometry");
+	// // create a sphere geometry with a radius of 0.5 meters
+	// bh.value = "primitive: sphere; radius: 0.2";
+	// newEntity.setAttributeNode(bh);
 				
 	// reuse the same bh variable for a material attribute to color the geometry
 	bh = document.createAttribute("material");
