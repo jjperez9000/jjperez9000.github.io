@@ -176,8 +176,8 @@ function mod_addBall(){
 
 		console.log(el.querySelector(".snap-button"))
 
-		// console.log(document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1])
-		// document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
+		console.log(document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1])
+		document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
 	}else{
 		console.log("a ball already exists");
 	}
