@@ -64,7 +64,7 @@ function inject_createInteractiveBall() {
 				
 	// An object needs to have geometry in order to be visible and work with physics
 	// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
-	// bh = document.createAttribute("geometry");
+	bh = document.createAttribute("geometry");
 	// create a sphere geometry with a radius of 0.5 meters
 	bh.value = "primitive: sphere; radius: 0.2";
 	newEntity.setAttributeNode(bh);
