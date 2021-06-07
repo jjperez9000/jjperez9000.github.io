@@ -165,7 +165,7 @@ inject_createInteractiveBall();
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
 function mod_addBall(){
-	
+	console.log("the man you want should be just below me ")
 	if(document.querySelector("a-entity[camera-cube-env]") == null){
 
 		var el = document.createElement("a-entity")
@@ -174,7 +174,7 @@ function mod_addBall(){
 		AFRAME.scenes[0].appendChild(el)
         el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
 		console.log(document.querySelectorAll[document.querySelectorAll(".snap-button").length-1])
-		document.querySelectorAll[document.querySelectorAll(".snap-button").length-1](".snap-button").object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
+		document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
 	}else{
 		console.log("a ball already exists");
 	}
