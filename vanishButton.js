@@ -170,11 +170,14 @@ function mod_addBall(){
 
 		var el = document.createElement("a-entity")
 		el.setAttribute("networked", { template: "#interactable-ball-media" } )
+        el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
 		el.object3D.position.y = 2;
 		AFRAME.scenes[0].appendChild(el)
-        el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
-		console.log(document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1])
-		document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
+
+		console.log(el.querySelector(".snap-button"))
+
+		// console.log(document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1])
+		// document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
 	}else{
 		console.log("a ball already exists");
 	}
