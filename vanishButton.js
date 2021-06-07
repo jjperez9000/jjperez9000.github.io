@@ -32,17 +32,12 @@ function inject_createInteractiveBall() {
 	// create a new entity for the template so we can append it to the assets later
 	// normally this is done in the Hubs.html "bootstrap" file
 	let newEntity = document.createElement("a-entity");
-
-	// let newChild = document.createElement("a-entity");
-	newEntity.setAttribute("class", "ui interactable-ui");
-	newEntity.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='.25 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
-				
 	// setup the attributes for the template such and class and components that
 	// should be associated with the template entities
 				
 	// set the class to interactable if you want interaction or some other class
 	// based on hubs interaction layers
-	// newEntity.setAttribute("class", "interactable");
+	newEntity.setAttribute("class", "interactable");
 				
 	// for attributes with multiple objects in the schema it's easier to setup
 	// a varibable to hold the attribute and its values then create the node on
@@ -107,6 +102,12 @@ function inject_createInteractiveBall() {
 	
 	//add the camera-cube-env component
 	// newEntity.setAttribute("camera-cube-env", "");
+
+	//slap the button on there
+	let newChild = document.createElement("a-entity");
+	newChild.setAttribute("class", "ui interactable-ui");
+	newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
+	newEntity.appendChild(newChild);
 				
 	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
 	newTemplate.content.appendChild(newEntity);
