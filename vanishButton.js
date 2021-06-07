@@ -182,8 +182,9 @@ function mod_addBall(){
 			collisionFilterMask: 31,
 			angularDamping: 0.01,
 			linearDamping: 0.01,
-			angularSleepingThreshold: 1.6,
-			gravity: { x: 0, y:0, z:0 }
+			angularSleepingThreshold: 2.5,
+			linearSleepingThreshold: 1.6,
+			gravity: { x: 0, y:-9.8, z:0 }
 		})
 	}else{
 		console.log("a ball already exists");
