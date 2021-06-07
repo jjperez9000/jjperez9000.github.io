@@ -173,7 +173,7 @@ function mod_addBall(){
 		el.object3D.position.y = 2;
 		AFRAME.scenes[0].appendChild(el)
         el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
-		console.log(document.querySelectorAll[document.querySelectorAll(".snap-button").length-1])
+		console.log(document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1])
 		document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
 	}else{
 		console.log("a ball already exists");
