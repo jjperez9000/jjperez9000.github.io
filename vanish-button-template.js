@@ -41,7 +41,7 @@ function inject_slideshow_template() {
 	// qualities of the entity.  We can reuse tempAtt to set all it's values
 	tempAtt = document.createAttribute("tags")
 	// set it to be a hand collision target, holdable, give it a hand constraint, a remote constraint, and set to be inspectable with a right click.
-	tempAtt.value = "isHandCollisionTarget: false; isHoldable: false; offersHandConstraint: false; offersRemoteConstraint: false; inspectable: true; singleActionButton:true; isStatic: true;togglesHoveredActionSet: true"
+	tempAtt.value = "isHandCollisionTarget: false; isHoldable: true; offersHandConstraint: false; offersRemoteConstraint: false; inspectable: true; singleActionButton:true; isStatic: true;togglesHoveredActionSet: true"
 	newEntity.setAttributeNode(tempAtt);
 	
 	//isStatic: true; togglesHoveredActionSet: true; inspectable: true;
