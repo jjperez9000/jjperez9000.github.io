@@ -52,7 +52,7 @@ function inject_createInteractiveBall() {
 	// bh.value = "type: kinematic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 31; angularDamping: 0.01; angularSleepingThreshold: 2.5; gravity:";
 	// newEntity.setAttributeNode(bh);
 	newEntity.setAttribute("body-helper", {
-		type: kinematic,
+		type: "kinematic",
 		mass: 0.001,
 		collisionFilterGroup: 1,
 		collisionFilterMask: 31,
