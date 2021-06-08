@@ -37,10 +37,10 @@ function inject_vanish_backend() {
 		},
 		_hideObject: (function() {
 			console.log("hiding/unhiding");
-			if (document.querySelector("#" + id).getAttribute("visible")) {
-				document.querySelector("#" + id).setAttribute("visible", false);
+			if (document.querySelector("#" + this.objectToHide).getAttribute("visible")) {
+				document.querySelector("#" + this.objectToHide).setAttribute("visible", false);
 			} else {
-				document.querySelector("#" + id).setAttribute("visible", true);
+				document.querySelector("#" + this.objectToHide).setAttribute("visible", true);
 			}
 		})
 	})
