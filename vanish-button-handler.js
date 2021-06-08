@@ -7,10 +7,16 @@ function inject_vanish_backend() {
 
 		init: function () {
 			console.log("init called");
+			let newChild = document.createElement("a-entity");
+			newChild.setAttribute("class", "ui interactable-ui");
+			newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
+			this.el.appendChild(newChild);
 		},
 
 		update: function (oldData) {
 			console.log("update called");
+			console.log(this.el.querySelector(".snap-button"));
+			// console.log(this.el.querySelector(".snap-button").object3D);
 		}
 	})
 	console.log("vanish-item was created");
