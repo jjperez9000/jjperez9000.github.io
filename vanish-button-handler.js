@@ -2,7 +2,7 @@ function inject_vanish_backend() {
 	AFRAME.registerComponent("vanish-item", {
 		init() {
 			console.log("ball has been created :)");
-			// this.update = this.update.bind(this);
+			this.update = this.update.bind(this);
 
 
 			
@@ -26,7 +26,7 @@ function inject_vanish_backend() {
 				// const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
 				// this.vanishButton.object3D.visible = this.nextButton.object3D.visible =
 				// 	!isPinned || window.APP.hubChannel.can("pin_objects");
-				// this.update();
+				this.update();
 				//this.el.emit("pager-loaded");
 			});
 
