@@ -11,7 +11,7 @@ function inject_vanish_backend() {
 			newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
 			this.el.appendChild(newChild);
 
-			this.vanishButton = this.el.querySelector(".snap-button");
+			this.vanishButton = this.el.child[0].querySelector(".snap-button");
 
 			this.vanishButton.object3D.addEventListener("interact", () => {
 				console.log("holy fuck it works")
