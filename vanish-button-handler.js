@@ -29,15 +29,15 @@ function inject_vanish_backend() {
 				//this.el.emit("pager-loaded");
 			});
 
-			NAF.utils
-				.getNetworkedEntity(this.el)
-				.then(networkedEl => {
-					this.networkedEl = networkedEl;
-					this.networkedEl.addEventListener("pinned", this.update);
-					this.networkedEl.addEventListener("unpinned", this.update);
-					window.APP.hubChannel.addEventListener("permissions_updated", this.update);
-				})
-				.catch(() => { }); //ignore exception, entity might not be networked
+			// NAF.utils
+			// 	.getNetworkedEntity(this.el)
+			// 	.then(networkedEl => {
+			// 		this.networkedEl = networkedEl;
+			// 		this.networkedEl.addEventListener("pinned", this.update);
+			// 		this.networkedEl.addEventListener("unpinned", this.update);
+			// 		window.APP.hubChannel.addEventListener("permissions_updated", this.update);
+			// 	})
+			// 	.catch(() => { }); //ignore exception, entity might not be networked
 		},
 
 		async update(oldData) {
