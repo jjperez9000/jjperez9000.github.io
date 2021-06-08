@@ -7,16 +7,28 @@ function inject_vanish_backend() {
 
 		init: function () {
 			console.log("init called");
-			let newChild = document.createElement("a-entity");
-			newChild.setAttribute("class", "ui interactable-ui");
-			newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
-			this.el.appendChild(newChild);
+			this.searching = true;
 		},
 
 		tick: function () {
-			console.log("tick called");
-			console.log(this.el.querySelector(".snap-button"));
-			console.log(this.el.querySelector(".snap-button").object3D);
+			// console.log("tick called");
+			// console.log(this.el.querySelector(".snap-button"));
+			// console.log(this.el.querySelector(".snap-button").object3D);
+
+			if (this.searching) {
+				console.log("tick called");
+				console.log(this.el.querySelector(".snap-button"));
+				console.log(this.el.querySelector(".snap-button").object3D);
+				this.vanishButton = this.el.querySelector(".snap-button");
+
+				if (this.vanishButton.object3D !== null) {
+					console.log("button was found!!! HURRAY!!! ")
+            		this.vanishButton.object3D.addEventListener("interact", () => {
+            			console.log("holy fuck it works")
+            		})
+					this.searching = false;
+				}
+			}
 		}
 	})
 	console.log("vanish-item was created");
