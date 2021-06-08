@@ -24,13 +24,21 @@ function inject_vanish_backend() {
             		this.vanishButton.object3D.addEventListener("interact", () => {
             			console.log("holy fuck it works")
 						
-						hideObject(this.objectToHide);
+						_hideObject(this.objectToHide);
 
             		})
 					this.searching = false;
 				}
 			}
-		}
+		},
+		_hideObject: (function() {
+			console.log("hiding/unhiding");
+			if (document.querySelector("#" + id).getAttribute("visible")) {
+				document.querySelector("#" + id).setAttribute("visible", false);
+			} else {
+				document.querySelector("#" + id).setAttribute("visible", true);
+			}
+		})
 	})
 	console.log("vanish-item was created");
 }
