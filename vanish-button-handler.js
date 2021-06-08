@@ -5,6 +5,29 @@ function inject_vanish_backend() {
 			console.log(this.el);
 			console.log(this.el.children);
 			// console.log(this.vanishButton);
+
+			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
+			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
+				// If we got removed while waiting, do nothing.
+				if (!this.el.parentNode){
+					console.log("partnetNOde not found")
+					return;
+				}
+				
+				console.log(this.el.querySelector(".snap-button"));
+				this.vanishButton = this.el.querySelector(".snap-button");
+				// this.hoverMenu = menu;
+				// this.nextButton = this.el.querySelector(".next-button [text-button]");
+				// this.prevButton = this.el.querySelector(".prev-button [text-button]");
+				// this.pageLabel = this.el.querySelector(".page-label");
+
+				// this.nextButton.object3D.addEventListener("interact", this.onNext);
+				// this.prevButton.object3D.addEventListener("interact", this.onPrev);
+
+				// this.update();
+				// //this.el.emit("pager-loaded");
+			});
+
 		}
 	})
 }
