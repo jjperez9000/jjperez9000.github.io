@@ -6,11 +6,11 @@ document.addEventListener("click", function(){
     }
 })
 
-function mod_hideObject() {
-    if (document.querySelector("#" + lastItemClicked.id).getAttribute("visible")) {
-        document.querySelector("#" + lastItemClicked.id).setAttribute("visible", false);
+function hideObject(id) {
+    if (document.querySelector("#" + id).getAttribute("visible")) {
+        document.querySelector("#" + id).setAttribute("visible", false);
     } else {
-        document.querySelector("#" + lastItemClicked.id).setAttribute("visible", true);
+        document.querySelector("#" + id).setAttribute("visible", true);
     }
 }
 
