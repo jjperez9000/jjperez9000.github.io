@@ -78,7 +78,6 @@ function inject_createInteractiveBall() {
 				
 	//add the listed-media component
 	newEntity.setAttribute("listed-media", "");
-	newEntity.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 
 	
 	//add the camera-cube-env component
@@ -154,6 +153,8 @@ function mod_addBall(){
 	var el = document.createElement("a-entity")
 	el.setAttribute("networked", { template: "#interactable-ball-media" } )
 	// el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
+	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
+
 	el.object3D.position.y = 2;
 	AFRAME.scenes[0].appendChild(el)
 
