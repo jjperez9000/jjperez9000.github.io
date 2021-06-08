@@ -22,8 +22,8 @@ function inject_vanish_backend() {
 				})
 
 
-				const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
-				const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
+				// const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
+				// const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
 				this.vanishButton.object3D.visible = true;
 				// this.update();
 				//this.el.emit("pager-loaded");
