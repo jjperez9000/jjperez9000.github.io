@@ -107,27 +107,17 @@ inject_createInteractiveBall();
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
 function mod_addBall() {
-	// console.log("the man you want should be just below me ")
-
 
 	var el = document.createElement("a-entity")
 	el.setAttribute("networked", { template: "#interactable-ball-media" })
-	
+
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
-	// console.log("vanish item button thing existence value: ")
-	// console.log(el.querySelector(".snap-button"));
 	el.setAttribute("vanish-item");
 	
 	
 	el.object3D.position.y = 2;
 	AFRAME.scenes[0].appendChild(el)
-	// console.log("vanish item button thing existence value AFTER ADDITION: ")
-	// console.log(AFRAME.scenes[0].querySelector(".snap-button"));
-
-
-	// document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
-
 }
 
 

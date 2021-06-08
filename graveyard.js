@@ -219,3 +219,91 @@
 			// 		window.APP.hubChannel.addEventListener("permissions_updated", this.update);
 			// 	})
 			// 	.catch(() => { }); //ignore exception, entity might not be networked
+
+
+            // schema: {
+            //     event: { type: 'string', default: '' },
+            //     message: { type: 'string', default: 'Hello, World!' }
+            // },
+    
+            // init: function () {
+            //     var self = this;
+            //     this.eventHandlerFn = function () { console.log(self.data.message); };
+            // },
+    
+            // update: function (oldData) {
+            //     var data = this.data;
+            //     var el = this.el;
+    
+            //     // `event` updated. Remove the previous event listener if it exists.
+            //     if (oldData.event && data.event !== oldData.event) {
+            //         el.removeEventListener(oldData.event, this.eventHandlerFn);
+            //     }
+    
+            //     if (data.event) {
+            //         el.addEventListener(data.event, this.eventHandlerFn);
+            //     } else {
+            //         console.log(data.message);
+            //     }
+            // }
+            // init: function() {
+            // 	console.log("ball has been created :)");
+            // 	console.log(this.el);
+    
+            // 	console.log(this.el.querySelector(".snap-button"));
+    
+            // 	this.vanishButton = this.el.querySelector(".snap-button");
+    
+            // 	if (this.vanishButton) {
+            // 		this.vanishButton.object3D.addEventListener("interact", () => {
+            // 			console.log("holy fuck it works")
+            // 		})
+            // 	}
+    
+            // 	// this.el.setAttribute("hover-menu__pager", { template: "#ball-hover-menu", isFlat: true });
+            // 	// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
+            // 	// 	// If we got removed while waiting, do nothing.
+            // 	// 	if (!this.el.parentNode) return;
+    
+            // 	// 	console.log(this.el.querySelector(".snap-button"));
+    
+            // 	// 	this.vanishButton = this.el.querySelector(".snap-button");
+    
+            // 	// 	this.vanishButton.object3D.addEventListener("interact", () => {
+            // 	// 		console.log("holy fuck it works")
+            // 	// 	})
+    
+            // 	// });
+            // },
+            // update: function() {
+            // 	console.log("update was called")
+            // 	console.log(this.el.querySelector(".snap-button"));
+    
+            // 	this.vanishButton = this.el.querySelector(".snap-button");
+    
+            // 	if (this.vanishButton) {
+            // 		this.vanishButton.object3D.addEventListener("interact", () => {
+            // 			console.log("holy fuck it works")
+            // 		})
+            // 	}
+            // }
+    
+        // })
+        // //slap the button on there
+        // //Query assets in order to setup template
+        // let assets = document.querySelector("a-assets");
+        // // create a new template variable
+        // let pageHoverTemplate = document.createElement("template");
+        // // create template id
+        // pageHoverTemplate.id = "ball-hover-menu";
+    
+        // let menuEntity = document.createElement("a-entity");
+        // menuEntity.setAttribute("class", "ui interactable-ui");
+        // menuEntity.setAttribute("visible", "false");
+    
+        // menuEntity.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
+    
+        // pageHoverTemplate.content.appendChild(menuEntity);
+    
+        // assets.appendChild(pageHoverTemplate);
+    
