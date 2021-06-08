@@ -85,10 +85,10 @@ function inject_createInteractiveBall() {
 
 
 	//slap the button on there
-	// let newChild = document.createElement("a-entity");
-	// newChild.setAttribute("class", "ui interactable-ui");
-	// newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
-	// newEntity.appendChild(newChild);
+	let newChild = document.createElement("a-entity");
+	newChild.setAttribute("class", "ui interactable-ui");
+	newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
+	newEntity.appendChild(newChild);
 
 	newEntity.setAttribute("vanish-item");
 
@@ -139,6 +139,26 @@ function inject_createInteractiveBall() {
 			},
 			"vanish-item",
 			"media-loader",
+			{
+				component: "media-video",
+				property: "time"
+			},
+			{
+				component: "media-video",
+				property: "videoPaused"
+			},
+			{
+				component: "media-pdf",
+				property: "index"
+			},
+			{
+				component: "slide-element",
+				property: "index"
+			},
+			{
+				component: "slidemenu-pager",
+				property: "index"
+			},
 			"material",
 			"pinnable"
 		]

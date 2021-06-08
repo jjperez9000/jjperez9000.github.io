@@ -4,43 +4,36 @@ function inject_vanish_backend() {
 			console.log("ball has been created :)");
 			console.log(this.el);
 			
-			this.el.setAttribute("networked", { template: "#ball-hover-menu"});
+			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
+			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
+				// If we got removed while waiting, do nothing.
+				if (!this.el.parentNode) {
+					console.log("nothing found");
+					return;
+				}
 
-			this.vanishButton = this.el.querySelector(".snap-button");
+				console.log(this.el.querySelector(".snap-button"));
 
-			this.vanishButton.object3D.addEventListener("interact", () => {
-				console.log("holy fuck it works")
-			})
+				this.hoverMenu = menu;
+				this.vanishButton = this.el.querySelector(".snap-button");
 
-			// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
-			// 	// If we got removed while waiting, do nothing.
-			// 	if (!this.el.parentNode) {
-			// 		console.log("nothing found");
-			// 		return;
-			// 	}
+				this.vanishButton.object3D.addEventListener("interact", () => {
+					console.log("holy fuck it works")
+				})
 
-			// 	console.log(this.el.querySelector(".snap-button"));
-
-			// 	this.hoverMenu = menu;
-			// 	this.vanishButton = this.el.querySelector(".snap-button");
-
-			// 	this.vanishButton.object3D.addEventListener("interact", () => {
-			// 		console.log("holy fuck it works")
-			// 	})
-
-			// 	this.update();
-			// 	//this.el.emit("pager-loaded");
-			// });
-
-			// NAF.utils
-			// 	.getNetworkedEntity(this.el)
-			// 	.then(networkedEl => {
-			// 		this.networkedEl = networkedEl;
-			// 		this.networkedEl.addEventListener("pinned", this.update);
-			// 		this.networkedEl.addEventListener("unpinned", this.update);
-			// 		window.APP.hubChannel.addEventListener("permissions_updated", this.update);
-			// 	})
-			// 	.catch(() => { }); //ignore exception, entity might not be networked
+				this.update();
+				//this.el.emit("pager-loaded");
+			});
+			this.vanishButton.object3D.visible = true;
+			NAF.utils
+				.getNetworkedEntity(this.el)
+				.then(networkedEl => {
+					this.networkedEl = networkedEl;
+					this.networkedEl.addEventListener("pinned", this.update);
+					this.networkedEl.addEventListener("unpinned", this.update);
+					window.APP.hubChannel.addEventListener("permissions_updated", this.update);
+				})
+				.catch(() => { }); //ignore exception, entity might not be networked
 
 		},
 
