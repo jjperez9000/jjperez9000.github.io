@@ -115,7 +115,7 @@ function mod_addBall() {
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
 	console.log("vanish item button thing existence value: ")
-	console.log(this.el.querySelector(".snap-button"));
+	console.log(el.querySelector(".snap-button"));
 	// el.setAttribute("vanish-item");
 
 
