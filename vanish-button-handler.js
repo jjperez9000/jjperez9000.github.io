@@ -10,20 +10,20 @@ function inject_vanish_backend() {
 			newChild.setAttribute("class", "ui interactable-ui");
 			newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
 			
-			console.log("pre child:")
-			console.log(this.el);
+			// console.log("pre child:")
+			// console.log(this.el);
 			this.el.appendChild(newChild);
-			console.log("post child:")
-			console.log(this.el);
+			// console.log("post child:")
+			// console.log(this.el);
 
 			console.log(this.el.querySelector(".snap-button"))
 
 			// console.log(el.child)
 			this.vanishButton = this.el.querySelector(".snap-button");
 
-			this.vanishButton.object3D.addEventListener("interact", () => {
-				console.log("holy fuck it works")
-			})
+			// this.vanishButton.object3D.addEventListener("interact", () => {
+			// 	console.log("holy fuck it works")
+			// })
 			
 			// this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
 			// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
