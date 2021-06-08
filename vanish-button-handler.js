@@ -16,7 +16,7 @@ function inject_vanish_backend() {
 			// console.log("post child:")
 			// console.log(this.el);
 
-			console.log(this.el.querySelector(".snap-button").object3D)
+			console.log(this.el.querySelector(".snap-button"))
 
 			// console.log(el.child)
 			this.vanishButton = this.el.querySelector(".snap-button").object3D;
