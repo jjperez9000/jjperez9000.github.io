@@ -112,6 +112,7 @@ function mod_addBall() {
 
 	var el = document.createElement("a-entity")
 	el.setAttribute("networked", { template: "#interactable-ball-media" })
+	
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
 	// console.log("vanish item button thing existence value: ")
