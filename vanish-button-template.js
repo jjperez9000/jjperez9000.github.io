@@ -46,16 +46,16 @@ function inject_createInteractiveBall() {
 	newEntity.setAttribute("listed-media", "");
 
 	//slap the button on there
-	// let newChild = document.createElement("a-entity");
-	// newChild.setAttribute("class", "ui interactable-ui");
-	// newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
-	// newEntity.appendChild(newChild);
+	let newChild = document.createElement("a-entity");
+	newChild.setAttribute("class", "ui interactable-ui");
+	newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
+	newEntity.appendChild(newChild);
 
 	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
 	newTemplate.content.appendChild(newEntity);
 	assets.appendChild(newTemplate);
 
-	newEntity.setAttribute("vanish-item");
+	// newEntity.setAttribute("vanish-item");
 
 
 	//need this or it won't work
@@ -116,18 +116,10 @@ function mod_addBall() {
 	// el.setAttribute("vanish-item");	
 	el.object3D.position.y = 2;
 
-	var updateObserver = new MutationObserver(function(mutations) { 
-		mutations.forEach(mutation => {
-			if (mutation.addedNodes) {
-				for (var n of mutation.addedNodes) {
-					console.log(n);
-				}
-			}
-		})
-	})
-	updateObserver.observe(AFRAME.scenes[0]);
-
 	AFRAME.scenes[0].appendChild(el);
+
+	console.log.document.querySelectorAll(".snap-button");
+	// document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
 }
 
 
