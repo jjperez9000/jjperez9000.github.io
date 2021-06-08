@@ -2,6 +2,7 @@ function inject_vanish_backend() {
 	AFRAME.registerComponent("vanish-item", {
 		init() {
 			console.log("ball has been created :)");
+			console.log(this.el);
 			console.log(this.el.children[0].children[0]);
 			this.vanishButton = this.el.children[0].children[0]
 			console.log(this.vanishButton);
