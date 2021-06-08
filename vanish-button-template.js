@@ -118,7 +118,7 @@ function mod_addBall() {
 
 	AFRAME.scenes[0].appendChild(el);
 
-	console.log.document.querySelectorAll(".snap-button");
+	console.log(document.querySelectorAll(".snap-button"));
 	// document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
 }
 
