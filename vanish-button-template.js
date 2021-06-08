@@ -112,7 +112,7 @@ function mod_addBall() {
 	el.setAttribute("networked", { template: "#interactable-ball-media" })
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
-	newEntity.setAttribute("vanish-item");
+	el.setAttribute("vanish-item");
 
 	el.object3D.position.y = 2;
 	AFRAME.scenes[0].appendChild(el)
