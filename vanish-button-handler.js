@@ -14,7 +14,6 @@ function inject_vanish_backend() {
 					console.log("holy fuck it works")
 				})
 
-				this.update();
 			});
 		}
 	})
