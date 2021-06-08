@@ -6,6 +6,8 @@ function inject_vanish_backend() {
 			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
 			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
 				// If we got removed while waiting, do nothing.
+				if (!this.el.parentNode) return;
+
 				console.log(this.el.querySelector(".snap-button"));
 
 				this.vanishButton = this.el.querySelector(".snap-button");
@@ -27,7 +29,7 @@ function inject_vanish_backend() {
 
 	let menuEntity = document.createElement("a-entity");
 	menuEntity.setAttribute("class", "ui interactable-ui");
-	menuEntity.setAttribute("visible", "true");
+	menuEntity.setAttribute("visible", "false");
 
 	menuEntity.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
 	
