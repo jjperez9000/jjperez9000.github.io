@@ -6,11 +6,11 @@ function inject_vanish_backend() {
 
 			console.log(this.el.querySelector(".snap-button"));
 
-			this.vanishButton = this.el.querySelector(".snap-button");
+			// this.vanishButton = this.el.querySelector(".snap-button");
 
-			this.vanishButton.object3D.addEventListener("interact", () => {
-				console.log("holy fuck it works")
-			})
+			// this.vanishButton.object3D.addEventListener("interact", () => {
+			// 	console.log("holy fuck it works")
+			// })
 
 			// this.el.setAttribute("hover-menu__pager", { template: "#ball-hover-menu", isFlat: true });
 			// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {

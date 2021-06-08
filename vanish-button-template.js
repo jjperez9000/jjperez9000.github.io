@@ -55,6 +55,9 @@ function inject_createInteractiveBall() {
 	newTemplate.content.appendChild(newEntity);
 	assets.appendChild(newTemplate);
 
+	newEntity.setAttribute("vanish-item");
+
+
 	//need this or it won't work
 	const vectorRequiresUpdate = epsilon => {
 		return () => {
@@ -91,7 +94,6 @@ function inject_createInteractiveBall() {
 				component: "scale",
 				requiresNetworkUpdate: vectorRequiresUpdate(0.001)
 			},
-			"vanish-item",
 			"media-loader",
 			"material",
 			"pinnable"
@@ -112,7 +114,8 @@ function mod_addBall() {
 	el.setAttribute("networked", { template: "#interactable-ball-media" })
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
-	el.setAttribute("vanish-item");
+	// el.setAttribute("vanish-item");
+
 
 	el.object3D.position.y = 2;
 	AFRAME.scenes[0].appendChild(el)
