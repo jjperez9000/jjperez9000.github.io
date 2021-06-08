@@ -6,7 +6,7 @@ function inject_vanish_backend() {
 
 			// this.el.setAttribute("slidepager-hover-menu", "isFlat: true");
 
-				// let newChild = document.createElement("a-entity");
+			let newChild = document.createElement("a-entity");
 			newChild.setAttribute("class", "ui interactable-ui");
 			newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
 			newEntity.appendChild(newChild);
