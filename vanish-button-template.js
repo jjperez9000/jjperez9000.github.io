@@ -134,6 +134,7 @@ function inject_createInteractiveBall() {
 				component: "scale",
 				requiresNetworkUpdate: vectorRequiresUpdate(0.001)
 			},
+			"vanish-item",
 			"media-loader",
 			"material",
 			"pinnable"

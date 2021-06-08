@@ -1,3 +1,14 @@
+function inject_vanish_backend() {
+	AFRAME.registerComponent("vanish-item", {
+		init() {
+			console.log("ball has been created :)");
+			console.log(this);
+		}
+	})
+}
+
+inject_vanish_backend();
+
 function inject_slideshow_Media() {
 		
 		AFRAME.registerComponent("slidemenu-pager", {
