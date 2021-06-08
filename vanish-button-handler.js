@@ -22,11 +22,10 @@ function inject_vanish_backend() {
 				})
 
 
-				// const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
-				// const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
-				// this.vanishButton.object3D.visible = this.nextButton.object3D.visible =
-				// 	!isPinned || window.APP.hubChannel.can("pin_objects");
-				this.update();
+				const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
+				const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
+				this.vanishButton.object3D.visible = true;
+				// this.update();
 				//this.el.emit("pager-loaded");
 			});
 
@@ -42,11 +41,6 @@ function inject_vanish_backend() {
 		},
 
 		async update(oldData) {
-			if (this.networkedEl && NAF.utils.isMine(this.networkedEl)) {
-				if (oldData && typeof oldData.index === "number" && oldData.index !== this.data.index) {
-					this.el.emit("owned-pager-page-changed");
-				}
-			}
 			if (this.vanishButton) {
 				const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
 				const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
