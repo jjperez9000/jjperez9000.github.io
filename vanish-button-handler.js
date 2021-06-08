@@ -3,9 +3,8 @@ function inject_vanish_backend() {
 		init() {
 			console.log("ball has been created :)");
 			console.log(this.el);
-			console.log(this.el.children[0].children[0]);
-			this.vanishButton = this.el.children[0].children[0]
-			console.log(this.vanishButton);
+			console.log(this.el.children);
+			// console.log(this.vanishButton);
 		}
 	})
 }
