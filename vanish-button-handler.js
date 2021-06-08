@@ -34,11 +34,13 @@ function inject_vanish_backend() {
 	pageHoverTemplate.content.appendChild(menuEntity);
 
 	assets.appendChild(pageHoverTemplate);
+
+	console.log("vanish-item was created");
 }
 
 
 
-// inject_vanish_backend();
+inject_vanish_backend();
 
 // function inject_slideshow_Media() {
 
