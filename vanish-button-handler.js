@@ -16,10 +16,10 @@ function inject_vanish_backend() {
 			// console.log("post child:")
 			// console.log(this.el);
 
-			console.log(this.el.querySelector(".snap-button"))
+			console.log(this.el.querySelector(".snap-button").object3D)
 
 			// console.log(el.child)
-			this.vanishButton = this.el.querySelector(".snap-button");
+			this.vanishButton = this.el.querySelector(".snap-button").object3D;
 
 			// this.vanishButton.object3D.addEventListener("interact", () => {
 			// 	console.log("holy fuck it works")
