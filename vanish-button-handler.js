@@ -25,7 +25,7 @@ function inject_vanish_backend() {
             		this.vanishButton.object3D.addEventListener("interact", () => {
             			console.log("holy fuck it works")
 						
-						_hideObject(this.objectToHide);
+						this._hideObject(this.objectToHide);
 
             		})
 					this.searching = false;
