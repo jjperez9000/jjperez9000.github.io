@@ -2,38 +2,43 @@ function inject_vanish_backend() {
 	AFRAME.registerComponent("vanish-item", {
 		init() {
 			console.log("ball has been created :)");
-			console.log(this.el);
-			// console.log(this.el.children);
-			// console.log(this.vanishButton);
-
+			
 			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
+			console.log(this.el);
 			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
 				// If we got removed while waiting, do nothing.
-				if (!this.el.parentNode){
-					console.log("partnetNOde not found")
+				if (!this.el.parentNode) {
+					console.log("nothing found");
 					return;
 				}
-				
-				console.log(this.el.querySelector(".snap-button"));
-				this.vanishButton = this.el.querySelector(".snap-button");
-				// this.hoverMenu = menu;
-				// this.nextButton = this.el.querySelector(".next-button [text-button]");
-				// this.prevButton = this.el.querySelector(".prev-button [text-button]");
-				// this.pageLabel = this.el.querySelector(".page-label");
 
-				// this.nextButton.object3D.addEventListener("interact", this.onNext);
-				// this.prevButton.object3D.addEventListener("interact", this.onPrev);
-
-				// this.update();
-				// //this.el.emit("pager-loaded");
+				this.hoverMenu = menu;
+				console.log(thie.el.querySelector(".snap-button"));
+				//this.el.emit("pager-loaded");
 			});
-			console.log(this.vanishButton);
-
 		}
 	})
+	//slap the button on there
+	//Query assets in order to setup template
+	let assets = document.querySelector("a-assets");
+	// create a new template variable
+	let pageHoverTemplate = document.createElement("template");
+	// create template id
+	pageHoverTemplate.id = "slidepager-hover-menu";
+
+	let menuEntity = document.createElement("a-entity");
+	menuEntity.setAttribute("class", "ui interactable-ui");
+	
+	menuEntity.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
+	
+	pageHoverTemplate.content.appendChild(menuEntity);
+
+	assets.appendChild(pageHoverTemplate);
 }
 
-inject_vanish_backend();
+
+
+// inject_vanish_backend();
 
 // function inject_slideshow_Media() {
 
