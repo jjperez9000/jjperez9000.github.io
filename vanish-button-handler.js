@@ -13,6 +13,12 @@ function inject_vanish_backend() {
 				}
 
 				this.hoverMenu = menu;
+				this.vanishButton = this.el.querySelector(".snap-button");
+
+				this.vanishButton.object3D.addEventListener("interact", () => {
+					console.log("holy fuck it works")
+				})
+
 				console.log(this.el.querySelector(".snap-button"));
 				//this.el.emit("pager-loaded");
 			});
