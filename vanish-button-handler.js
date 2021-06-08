@@ -4,7 +4,6 @@ function inject_vanish_backend() {
 			console.log("ball has been created :)");
 			
 			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
-			console.log(this.el);
 			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
 				// If we got removed while waiting, do nothing.
 				if (!this.el.parentNode) {
@@ -19,9 +18,35 @@ function inject_vanish_backend() {
 					console.log("holy fuck it works")
 				})
 
-				console.log(this.el.querySelector(".snap-button"));
+
+				this.update();
 				//this.el.emit("pager-loaded");
 			});
+
+			NAF.utils
+				.getNetworkedEntity(this.el)
+				.then(networkedEl => {
+					this.networkedEl = networkedEl;
+					this.networkedEl.addEventListener("pinned", this.update);
+					this.networkedEl.addEventListener("unpinned", this.update);
+					window.APP.hubChannel.addEventListener("permissions_updated", this.update);
+					this.data.index = this.networkedEl.getAttribute("slide-element").index;
+				})
+				.catch(() => { }); //ignore exception, entity might not be networked
+		},
+
+		async update(oldData) {
+			if (this.networkedEl && NAF.utils.isMine(this.networkedEl)) {
+				if (oldData && typeof oldData.index === "number" && oldData.index !== this.data.index) {
+					this.el.emit("owned-pager-page-changed");
+				}
+			}
+			if (this.vanishButton) {
+				const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
+				const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
+				this.vanishButton.object3D.visible = this.nextButton.object3D.visible =
+					!isPinned || window.APP.hubChannel.can("pin_objects");
+			}
 		}
 	})
 	//slap the button on there
