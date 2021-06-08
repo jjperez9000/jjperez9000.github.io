@@ -13,7 +13,7 @@ function inject_vanish_backend() {
 			this.el.appendChild(newChild);
 		},
 
-		update: function (oldData) {
+		update: function () {
 			console.log("update called");
 			console.log(this.el.querySelector(".snap-button"));
 			// console.log(this.el.querySelector(".snap-button").object3D);
