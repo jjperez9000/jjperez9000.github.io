@@ -189,3 +189,33 @@
 //     var temp = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0.15 0.08' scale='0.75 0.75 0.75' slice9='' text-button=''><a-entity sprite='' class='snap-icon' icon-button='image: snap_camera.png; hoverImage: snap_camera.png;' scale='0.2 0.2 0.2' position='0 0.002 0.001'></a-entity></a-entity>"
 
 // }
+
+			// this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
+			// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
+			// 	// If we got removed while waiting, do nothing.
+			// 	if (!this.el.parentNode) {
+			// 		console.log("nothing found");
+			// 		return;
+			// 	}
+
+			// 	this.hoverMenu = menu;
+
+
+
+
+			// 	// const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
+			// 	// const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
+			// 	// this.update();
+			// 	//this.el.emit("pager-loaded");
+			// });
+			
+			// this.vanishButton.object3D.visible = true;
+			// NAF.utils
+			// 	.getNetworkedEntity(this.el)
+			// 	.then(networkedEl => {
+			// 		this.networkedEl = networkedEl;
+			// 		this.networkedEl.addEventListener("pinned", this.update);
+			// 		this.networkedEl.addEventListener("unpinned", this.update);
+			// 		window.APP.hubChannel.addEventListener("permissions_updated", this.update);
+			// 	})
+			// 	.catch(() => { }); //ignore exception, entity might not be networked
