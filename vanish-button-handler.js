@@ -4,31 +4,32 @@ function inject_vanish_backend() {
 			console.log("ball has been created :)");
 			// this.update = this.update.bind(this);
 
+			this.el.setAttribute("slidepager-hover-menu", "isFlat: true");
+	
+			this.vanishButton = this.el.querySelector(".snap-button");
 
+			this.vanishButton.object3D.addEventListener("interact", () => {
+				console.log("holy fuck it works")
+			})
+			// this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
+			// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
+			// 	// If we got removed while waiting, do nothing.
+			// 	if (!this.el.parentNode) {
+			// 		console.log("nothing found");
+			// 		return;
+			// 	}
+
+			// 	this.hoverMenu = menu;
+
+
+
+			// 	// const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
+			// 	// const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
+			// 	this.update();
+			// 	//this.el.emit("pager-loaded");
+			// });
 			
-			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
-			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
-				// If we got removed while waiting, do nothing.
-				if (!this.el.parentNode) {
-					console.log("nothing found");
-					return;
-				}
-
-				this.hoverMenu = menu;
-				this.vanishButton = this.el.querySelector(".snap-button");
-
-				this.vanishButton.object3D.addEventListener("interact", () => {
-					console.log("holy fuck it works")
-				})
-
-
-				// const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
-				// const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
-				this.vanishButton.object3D.visible = true;
-				// this.update();
-				//this.el.emit("pager-loaded");
-			});
-
+			// this.vanishButton.object3D.visible = true;
 			// NAF.utils
 			// 	.getNetworkedEntity(this.el)
 			// 	.then(networkedEl => {
@@ -40,7 +41,7 @@ function inject_vanish_backend() {
 			// 	.catch(() => { }); //ignore exception, entity might not be networked
 		},
 
-		async update(oldData) {
+		async update() {
 			if (this.vanishButton) {
 				const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
 				const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
