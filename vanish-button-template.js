@@ -113,11 +113,21 @@ function mod_addBall() {
 
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
-	// el.setAttribute("vanish-item");
-	
-	
+	// el.setAttribute("vanish-item");	
 	el.object3D.position.y = 2;
-	AFRAME.scenes[0].appendChild(el)
+
+	var updateObserver = new MutationObserver(function(mutations) { 
+		mutations.forEach(mutation => {
+			if (mutation.addedNodes) {
+				for (var n of mutation.addedNodes) {
+					console.log(n);
+				}
+			}
+		})
+	})
+	updateObserver.observe(AFRAME.scenes[0]);
+
+	AFRAME.scenes[0].appendChild(el);
 }
 
 
