@@ -55,7 +55,7 @@ function inject_createInteractiveBall() {
 	newTemplate.content.appendChild(newEntity);
 	assets.appendChild(newTemplate);
 
-	// newEntity.setAttribute("vanish-item");
+	newEntity.setAttribute("vanish-item");
 
 
 	//need this or it won't work
@@ -113,7 +113,7 @@ function mod_addBall() {
 
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
-	el.setAttribute("vanish-item");
+	// el.setAttribute("vanish-item");
 	
 	
 	el.object3D.position.y = 2;
