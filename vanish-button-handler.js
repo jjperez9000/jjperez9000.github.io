@@ -3,7 +3,7 @@ function inject_vanish_backend() {
 		init() {
 			console.log("ball has been created :)");
 			console.log(this.el);
-			console.log(this.el.children);
+			// console.log(this.el.children);
 			// console.log(this.vanishButton);
 
 			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
@@ -27,6 +27,7 @@ function inject_vanish_backend() {
 				// this.update();
 				// //this.el.emit("pager-loaded");
 			});
+			console.log(this.vanishButton);
 
 		}
 	})
