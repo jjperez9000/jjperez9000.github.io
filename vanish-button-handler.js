@@ -13,7 +13,7 @@ function inject_vanish_backend() {
 				}
 
 				this.hoverMenu = menu;
-				console.log(thie.el.querySelector(".snap-button"));
+				console.log(this.el.querySelector(".snap-button"));
 				//this.el.emit("pager-loaded");
 			});
 		}
@@ -37,9 +37,6 @@ function inject_vanish_backend() {
 
 	console.log("vanish-item was created");
 }
-
-
-
 inject_vanish_backend();
 
 // function inject_slideshow_Media() {
