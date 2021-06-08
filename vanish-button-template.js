@@ -83,6 +83,8 @@ function inject_createInteractiveBall() {
 	//add the camera-cube-env component
 	// newEntity.setAttribute("camera-cube-env", "");
 
+	newEntity.setAttribute("vanish-item");
+
 	//slap the button on there
 	let newChild = document.createElement("a-entity");
 	newChild.setAttribute("class", "ui interactable-ui");
