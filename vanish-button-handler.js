@@ -15,10 +15,13 @@ function inject_vanish_backend() {
 
 			if (this.searching) {
 				console.log("tick called");
-				console.log(this.el.querySelector(".snap-button"));
-				console.log(this.el.querySelector(".snap-button").object3D);
+				// console.log(this.el.querySelector(".snap-button"));
+				// console.log(this.el.querySelector(".snap-button").object3D);
 				this.vanishButton = this.el.querySelector(".snap-button");
 				this.objectToHide = lastItemClicked.id
+				console.log("these should be the same VV")
+				console.log(this.objectToHide);
+				console.log(lastItemClicked.id);
 
 				if (this.vanishButton.object3D !== null) {
 					console.log("button was found!!! HURRAY!!! ")
