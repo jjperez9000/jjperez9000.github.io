@@ -3,7 +3,7 @@ function inject_vanish_backend() {
 		init() {
 			console.log("ball has been created :)");
 			console.log(this.el);
-			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
+			this.el.setAttribute("hover-menu__pager", { template: "#ball-hover-menu", isFlat: true });
 			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
 				// If we got removed while waiting, do nothing.
 				if (!this.el.parentNode) return;
