@@ -1,16 +1,18 @@
 function inject_vanish_backend() {
 	AFRAME.registerComponent("vanish-item", {
-		init() {
+		init: function() {
 			console.log("ball has been created :)");
 			console.log(this.el);
 
 			console.log(this.el.querySelector(".snap-button"));
 
-			// this.vanishButton = this.el.querySelector(".snap-button");
+			this.vanishButton = this.el.querySelector(".snap-button");
 
-			// this.vanishButton.object3D.addEventListener("interact", () => {
-			// 	console.log("holy fuck it works")
-			// })
+			if (this.vanishButton) {
+				this.vanishButton.object3D.addEventListener("interact", () => {
+					console.log("holy fuck it works")
+				})
+			}
 
 			// this.el.setAttribute("hover-menu__pager", { template: "#ball-hover-menu", isFlat: true });
 			// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
@@ -26,6 +28,18 @@ function inject_vanish_backend() {
 			// 	})
 
 			// });
+		},
+		update: function() {
+			console.log("update was called")
+			console.log(this.el.querySelector(".snap-button"));
+
+			this.vanishButton = this.el.querySelector(".snap-button");
+
+			if (this.vanishButton) {
+				this.vanishButton.object3D.addEventListener("interact", () => {
+					console.log("holy fuck it works")
+				})
+			}
 		}
 	})
 	//slap the button on there
