@@ -16,7 +16,6 @@ function inject_vanish_backend() {
 
 				this.update();
 			});
-			this.vanishButton.object3D.visible = true;
 		}
 	})
 	//slap the button on there
