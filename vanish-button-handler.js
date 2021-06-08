@@ -4,13 +4,19 @@ function inject_vanish_backend() {
 			console.log("ball has been created :)");
 			// this.update = this.update.bind(this);
 
-			this.el.setAttribute("slidepager-hover-menu", "isFlat: true");
-	
+			// this.el.setAttribute("slidepager-hover-menu", "isFlat: true");
+
+				// let newChild = document.createElement("a-entity");
+			newChild.setAttribute("class", "ui interactable-ui");
+			newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
+			newEntity.appendChild(newChild);
+
 			this.vanishButton = this.el.querySelector(".snap-button");
 
 			this.vanishButton.object3D.addEventListener("interact", () => {
 				console.log("holy fuck it works")
 			})
+			
 			// this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
 			// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
 			// 	// If we got removed while waiting, do nothing.
@@ -23,9 +29,10 @@ function inject_vanish_backend() {
 
 
 
+
 			// 	// const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
 			// 	// const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
-			// 	this.update();
+			// 	// this.update();
 			// 	//this.el.emit("pager-loaded");
 			// });
 			
@@ -41,13 +48,13 @@ function inject_vanish_backend() {
 			// 	.catch(() => { }); //ignore exception, entity might not be networked
 		},
 
-		async update() {
-			if (this.vanishButton) {
-				const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
-				const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
-				this.vanishButton.object3D.visible = !isPinned || window.APP.hubChannel.can("pin_objects");
-			}
-		}
+		// async update() {
+		// 	if (this.vanishButton) {
+		// 		const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
+		// 		const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
+		// 		this.vanishButton.object3D.visible = !isPinned || window.APP.hubChannel.can("pin_objects");
+		// 	}
+		// }
 	})
 	//slap the button on there
 	//Query assets in order to setup template
