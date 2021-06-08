@@ -34,7 +34,7 @@ function inject_vanish_backend() {
 
 	let menuEntity = document.createElement("a-entity");
 	menuEntity.setAttribute("class", "ui interactable-ui");
-	menuEntity.setAttribute("visible", "false");
+	menuEntity.setAttribute("visible", "true");
 
 	menuEntity.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
 	
