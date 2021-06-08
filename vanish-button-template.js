@@ -117,10 +117,12 @@ function mod_addBall() {
 	console.log("vanish item button thing existence value: ")
 	console.log(el.querySelector(".snap-button"));
 	// el.setAttribute("vanish-item");
-
-
+	
+	
 	el.object3D.position.y = 2;
 	AFRAME.scenes[0].appendChild(el)
+	console.log("vanish item button thing existence value AFTER ADDITION: ")
+	console.log(AFRAME.scenes[0].querySelector(".snap-button"));
 
 
 	// document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
