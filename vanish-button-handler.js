@@ -2,7 +2,7 @@ function inject_vanish_backend() {
 	AFRAME.registerComponent("vanish-item", {
 		init() {
 			console.log("ball has been created :)");
-			this.update = this.update.bind(this);
+			// this.update = this.update.bind(this);
 
 
 			
