@@ -123,7 +123,7 @@ function inject_slideshow_Media() {
 			//if you want to disable the menu and make the slide clickable and loopable
 			//then uncomment the line below and remove the slidemenu-pager component from the object
 			
-			//this.el.object3D.addEventListener("interact", this.onNext);
+			this.el.object3D.addEventListener("interact", this.onNext);
 			
 			//get our content from the variable in the script injected above.
 			this.content = slideconfig.slides;
@@ -173,7 +173,7 @@ function inject_slideshow_Media() {
 }
 
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-// inject_slideshow_Media();
+inject_slideshow_Media();
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
 function mod_addSlides(){

@@ -169,10 +169,10 @@ NAF.schemas.add({
 			component: "slide-element",
 			property: "index"
 		},
-		{
-			component: "slidemenu-pager",
-			property: "index"
-		},
+		// {
+		// 	component: "slidemenu-pager",
+		// 	property: "index"
+		// },
 		"pinnable"
 	],
 	nonAuthorizedComponents: [
