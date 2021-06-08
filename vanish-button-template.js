@@ -83,14 +83,15 @@ function inject_createInteractiveBall() {
 	//add the camera-cube-env component
 	// newEntity.setAttribute("camera-cube-env", "");
 
-	newEntity.setAttribute("vanish-item");
-
+	
 	//slap the button on there
 	let newChild = document.createElement("a-entity");
 	newChild.setAttribute("class", "ui interactable-ui");
 	newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
 	newEntity.appendChild(newChild);
-				
+	
+	newEntity.setAttribute("vanish-item");
+	
 	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
 	newTemplate.content.appendChild(newEntity);
 				
