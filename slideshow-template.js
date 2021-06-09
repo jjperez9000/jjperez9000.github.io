@@ -53,7 +53,6 @@
 		let bh = document.createAttribute("shape-helper")
 		bh.value = "";
 		newEntity.setAttributeNode(bh);
-		newEntity.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 
 		////////////////////////////////////////////////
 
