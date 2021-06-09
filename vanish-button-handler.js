@@ -13,7 +13,9 @@ function inject_vanish_backend() {
 				this.vanishButton = this.el.querySelector(".snap-button");
 
 				//save last item interacted with
-				this.objectToHide = lastItemClicked.id;
+				if (lastItemClicked !== undefined) {
+					this.objectToHide = lastItemClicked.id;
+				}
 
 				if (this.vanishButton.object3D !== null) {
 					//create an event listener for when the button is clicked
