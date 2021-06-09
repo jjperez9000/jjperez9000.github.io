@@ -7,19 +7,16 @@ var observer;
 var groupObserver;
 var currentGroup = null;
 
-// var temp = setInterval(function() {
-// 	console.log(AFRAME.scenes[0].systems.interaction);
-// 	console.log(AFRAME.scenes[0].systems.userinput);
-// }, 1000);
-
+//function to detect when a new chat window is pulled up
 function detectLog() {
 	console.log("the log does not exist yet");
 	presenceIntervalCheck = setInterval(function(){ 
 		if(document.querySelector("[class*=message-list]") != null ) {
 			console.log("found presence");
 
+			//add a function to the 'x' button on the window so that when it is closed
+			//we start searching for a window again
 			document.querySelector("[class*=icon-button]").onclick = function() {
-				// groupObserver.disconnect();
 				observer.disconnect();
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
@@ -35,28 +32,31 @@ function detectLog() {
 
 detectLog();
 
+//this function watches for 2 different things: 
+//new items in message list and new child messages
+//anytime a new user says something a new element is added to the message list
+//all of their subsequent messages (until someone else speaks) will be children of that new element
+//watchedNode tracks the new element, and watchedNode2 tracks that element's children
 function checkPresence() {
 	
 	const watchedNode = document.querySelector("[class*=message-list]");
-
-	console.log(watchedNode.className);
-
+	
+	//check if we were observing a group before checkPresence() was called
+	//this will be the case if a window had previously opened before
 	if (currentGroup != null) {
 		const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1];
-		// groupObserver.disconnect();
 		groupObserver.observe(watchedNode2, {childList: true});
 	}
 
 	observer = new MutationObserver(function(mutations) {
-
-		mutations.forEach(function(mutation) {
-			
+		mutations.forEach(function(mutation) {		
 			if (mutation.addedNodes) {
 				for (var n of mutation.addedNodes){
-					console.log(n);
 
 					document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.textContent } }));		
-					const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1]
+
+					//begin observing the new children in the message group
+					const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1];
 					currentGroup = watchedNode2;
 
 					groupObserver = new MutationObserver(function(mutations) {
@@ -68,7 +68,7 @@ function checkPresence() {
 									document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: i.textContent } }));									
 								}
 							}
-						  })
+						})
 					});
 					groupObserver.observe(watchedNode2, {childList: true});
 				}
@@ -85,9 +85,9 @@ function checkPresence() {
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
 	
-	// // function we want to run we add mod_ to the string to isolate our custom functions
-	// // from the global namespace and prevent people from running functions through chat
-	// // interface unless it's one we've added for that purpose.
+	// function we want to run we add mod_ to the string to isolate our custom functions
+	// from the global namespace and prevent people from running functions through chat
+	// interface unless it's one we've added for that purpose.
 	
 	var myMessage = e.detail.text;
 	
@@ -99,7 +99,7 @@ document.querySelector("a-scene").addEventListener("chatevent", e => {
 	// is object a function?
 	if (typeof fn === "function"){
 		fn();
-	}else{
+	} else {
 		console.log(fn + " is not a function");
 	}
 });
