@@ -32,7 +32,10 @@
 
 		// Button needs geometry so that we can give it a body. This will go away once we get a real model for the button
 		// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
-
+		bh = document.createAttribute("geometry");
+		//create a simple geometry sphere of 0.2 meters
+		// bh.value = "primitive: sphere; radius: 0.2";
+		newEntity.setAttributeNode(bh);
 
 		// set the unowned body kinematic component for the object since it's networked
 		// and physics related.
