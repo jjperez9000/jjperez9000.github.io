@@ -1,6 +1,6 @@
 
 
-function inject_createVanishButton() {
+function inject_vanish_button_template() {
 
 	//Query assets in order to setup template
 	let assets = document.querySelector("a-assets");
@@ -151,7 +151,7 @@ function inject_createVanishButton() {
 
 }
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-inject_createVanishButton();
+inject_vanish_button_template();
 
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
