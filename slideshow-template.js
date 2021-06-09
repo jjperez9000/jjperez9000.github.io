@@ -26,7 +26,7 @@
 		// masks are used to limit what objects can collide with.  See the body-helper
 		// component for more information
 		let tempAtt = document.createAttribute("body-helper");
-		tempAtt.value = "type: dynamic; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
+		tempAtt.value = "type: static; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
 		newEntity.setAttributeNode(tempAtt);
 		
 		//owned-object-limiter
@@ -42,20 +42,10 @@
 		// qualities of the entity.  We can reuse tempAtt to set all it's values
 		tempAtt = document.createAttribute("tags")
 		// set it to be a hand collision target, holdable, give it a hand constraint, a remote constraint, and set to be inspectable with a right click.
-		tempAtt.value = "isHandCollisionTarget: true; isHoldable: true; offersHandConstraint: true; offersRemoteConstraint: false; inspectable: true; singleActionButton:true; isStatic: true;togglesHoveredActionSet: true"
+		tempAtt.value = "isHandCollisionTarget: false; isHoldable: false; offersHandConstraint: false; offersRemoteConstraint: false; inspectable: true; singleActionButton:true; isStatic: true;togglesHoveredActionSet: true"
 		newEntity.setAttributeNode(tempAtt);
 		
 		//isStatic: true; togglesHoveredActionSet: true; inspectable: true;
-
-		////////////////////////////////////////////////
-		//potential bad code: 
-		// newEntity.setAttribute("set-unowned-body-kinematic", "");
-		let bh = document.createAttribute("shape-helper")
-		bh.value = "";
-		newEntity.setAttributeNode(bh);
-
-		////////////////////////////////////////////////
-
 						
 		// you can set the objects to be destroyed at extreme distances in order to avoid having a bunch of hard to find physics objects falling in your hub
 
