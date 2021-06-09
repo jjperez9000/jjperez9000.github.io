@@ -13,3 +13,7 @@ function mod_hideObject() {
         document.querySelector("#" + lastItemClicked.id).setAttribute("visible", true);
     }
 }
+
+function mod_test() {
+    console.log("hello world");
+}

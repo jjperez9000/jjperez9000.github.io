@@ -143,6 +143,7 @@ function inject_createVanishButton() {
 				requiresNetworkUpdate: vectorRequiresUpdate(0.001)
 			},
 			"media-loader",
+			"vanish-button",
 			"material",
 			"pinnable"
 		]
@@ -158,7 +159,6 @@ function mod_addBall() {
 
 	var el = document.createElement("a-entity")
 	el.setAttribute("networked", { template: "#vanish-button-media" })
-
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
 	el.object3D.position.y = 2;
