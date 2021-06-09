@@ -16,64 +16,73 @@
 		// set the class to interactable if you want interaction or some other class
 		// based on hubs interaction layers
 		newEntity.setAttribute("class", "interactable");
-						
+
+			
 		// for attributes with multiple objects in the schema it's easier to setup
 		// a varibable to hold the attribute and its values then create the node on
 		// the entity
-						
+					
 		// the body helper component allows you to setup dynamic attributes for physics
 		// interactions.  the type can be dynamic or static.  collision filters and
 		// masks are used to limit what objects can collide with.  See the body-helper
 		// component for more information
-		let tempAtt = document.createAttribute("body-helper");
-		tempAtt.value = "type: static; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
-		newEntity.setAttributeNode(tempAtt);
-		
-		//owned-object-limiter
-		tempAtt = document.createAttribute("owned-object-limiter");
-		tempAtt.value = "counter: #media-counter";
-		newEntity.setAttributeNode(tempAtt);
-				
+		let bh = document.createAttribute("body-helper");
+		bh.value = "type: dynamic; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
+		newEntity.setAttributeNode(bh);
+
+		// Button needs geometry so that we can give it a body. This will go away once we get a real model for the button
+		// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
+		bh = document.createAttribute("geometry");
+		//create a simple geometry sphere of 0.2 meters
+		bh.value = "primitive: sphere; radius: 0.2";
+		newEntity.setAttributeNode(bh);
+
+		// reuse the same bh variable for a material attribute to color the geometry
+		bh = document.createAttribute("material");
+		// set the color to yellow.  You can set a lot of things here, texture, shininess etc.  See the aframe docs on materials
+		bh.value = "color:yellow;metalness:1.0;roughness:0.0;";
+		newEntity.setAttributeNode(bh);
+
+		// set the unowned body kinematic component for the object since it's networked
+		// and physics related.
+		newEntity.setAttribute("set-unowned-body-kinematic", "");
+
 		// sets the remote hover target component on the object
-
 		newEntity.setAttribute("is-remote-hover-target", "");
-						
-		// the tags component allows you to filter the collisions and interactable
-		// qualities of the entity.  We can reuse tempAtt to set all it's values
-		tempAtt = document.createAttribute("tags")
-		// set it to be a hand collision target, holdable, give it a hand constraint, a remote constraint, and set to be inspectable with a right click.
-		tempAtt.value = "isHandCollisionTarget: false; isHoldable: false; offersHandConstraint: false; offersRemoteConstraint: false; inspectable: true; singleActionButton:true; isStatic: true;togglesHoveredActionSet: true"
-		newEntity.setAttributeNode(tempAtt);
-		
-		//isStatic: true; togglesHoveredActionSet: true; inspectable: true;
-						
-		// you can set the objects to be destroyed at extreme distances in order to avoid having a bunch of hard to find physics objects falling in your hub
 
+		// the tags component allows you to filter the collisions and interactable
+		// qualities of the entity.  We can reuse bh to set all it's values
+		bh = document.createAttribute("tags")
+		// set it to be a hand collision target, holdable, give it a hand constraint, a remote constraint, and set to be inspectable with a right click.
+		bh.value = "isHandCollisionTarget: true; isHoldable: true; offersHandConstraint: true; offersRemoteConstraint: true; inspectable: true;";
+		newEntity.setAttributeNode(bh);
+
+		// you can set the objects to be destroyed at extreme distances in order to avoid having a bunch of hard to find physics objects falling in your hub
 		newEntity.setAttribute("destroy-at-extreme-distances", "");
-						
+
+		// sets whether the object can be scaled when you grab it. Check hubs docs or the component to see how it can be scaled in different modes
+		newEntity.setAttribute("scalable-when-grabbed", "");
+		
 		// another component setup.  Check it out in the components in src
 		newEntity.setAttribute("set-xyz-order", "");
+		
 		// important! since the matrix auto update on objects in turned off by default
 		// in order to save compute power
 		newEntity.setAttribute("matrix-auto-update", "");
+		
 		// whether this object has a hoverable visuals interaction. You may have to add additional child entities to the template to get this to show up.  Check the component to see how it works 
 		newEntity.setAttribute("hoverable-visuals", "");
-		
-		//position-at-border__freeze
-		tempAtt = document.createAttribute("position-at-border__freeze");
-		tempAtt.value = "target:.freeze-menu";
-		newEntity.setAttributeNode(tempAtt);
-		
-		//position-at-border__freeze-unprivileged
-		tempAtt = document.createAttribute("position-at-border__freeze-unprivileged");
-		tempAtt.value = "target:.freeze-unprivileged-menu";
-		newEntity.setAttributeNode(tempAtt);
+
+		// Important!  This Component helps you set the collision shape for the object
+		// without it set on the actual entity which contains the mesh (set with the 
+		// geometry component above in this case) the physics won't collide and the 
+		// object will fall through the ground.  Check the component for details
+		bh = document.createAttribute("shape-helper")
+		bh.value = "";
+		newEntity.setAttributeNode(bh);
 
 		//add the listed-media component
-		newEntity.setAttribute("listed-media", "");
-		//add the use-audio-settings component
-		newEntity.setAttribute("use-audio-system-settings", "");
-
+	newEntity.setAttribute("listed-media", "");
 	///////////////////////////////////////////////////////////////////////
 
 		//add our slide-counter component created below.  I include the setting of index to show how it keeps track of the current slide
