@@ -49,7 +49,7 @@
 
 		////////////////////////////////////////////////
 		//potential bad code: 
-		newEntity.setAttribute("set-unowned-body-kinematic", "");
+		// newEntity.setAttribute("set-unowned-body-kinematic", "");
 		let bh = document.createAttribute("shape-helper")
 		bh.value = "";
 		newEntity.setAttributeNode(bh);
