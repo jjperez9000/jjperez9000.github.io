@@ -17,3 +17,8 @@ function mod_hideObject() {
 function mod_test() {
     console.log("hello world");
 }
+
+let temp = lastItemClicked.getAttributeNames()
+temp.forEach(element => {
+    console.log(lastItemClicked.getAttribute(element));
+});
