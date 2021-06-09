@@ -2,7 +2,6 @@ function inject_vanish_backend() {
 	AFRAME.registerComponent("vanish-item", {
 
 		init: function () {
-			console.log("init called");
 			this._hideObject = this._hideObject.bind(this);
 			this.searching = true;
 		},

@@ -1,13 +1,13 @@
 
 
-function inject_createInteractiveBall() {
+function inject_createVanishButton() {
 
 	//Query assets in order to setup template
 	let assets = document.querySelector("a-assets");
 	// create a new template variable
 	let newTemplate = document.createElement("template");
 	// create template id
-	newTemplate.id = "interactable-ball-media";
+	newTemplate.id = "vanish-button-media";
 	// create a new entity for the template so we can append it to the assets later
 	// normally this is done in the Hubs.html "bootstrap" file
 	let newEntity = document.createElement("a-entity");
@@ -48,6 +48,7 @@ function inject_createInteractiveBall() {
 	// set the unowned body kinematic component for the object since it's networked
 	// and physics related.
 	newEntity.setAttribute("set-unowned-body-kinematic", "");
+
 	// sets the remote hover target component on the object
 	newEntity.setAttribute("is-remote-hover-target", "");
 
@@ -60,13 +61,17 @@ function inject_createInteractiveBall() {
 
 	// you can set the objects to be destroyed at extreme distances in order to avoid having a bunch of hard to find physics objects falling in your hub
 	newEntity.setAttribute("destroy-at-extreme-distances", "");
+
 	// sets whether the object can be scaled when you grab it. Check hubs docs or the component to see how it can be scaled in different modes
 	newEntity.setAttribute("scalable-when-grabbed", "");
+	
 	// another component setup.  Check it out in the components in src
 	newEntity.setAttribute("set-xyz-order", "");
+	
 	// important! since the matrix auto update on objects in turned off by default
 	// in order to save compute power
 	newEntity.setAttribute("matrix-auto-update", "");
+	
 	// whether this object has a hoverable visuals interaction. You may have to add additional child entities to the template to get this to show up.  Check the component to see how it works 
 	newEntity.setAttribute("hoverable-visuals", "");
 
@@ -81,19 +86,27 @@ function inject_createInteractiveBall() {
 	//add the listed-media component
 	newEntity.setAttribute("listed-media", "");
 
-	//add the button to the front of the ball
+/////////////////////////////////////////////////////////////////////
+
+	//create a button that we can use and add it to the ball
 	let newChild = document.createElement("a-entity");
 	newChild.setAttribute("class", "ui interactable-ui");
 	newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
 	newEntity.appendChild(newChild);
 
-	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
+	//give function to the added button
 	newEntity.setAttribute("vanish-item");
+
+/////////////////////////////////////////////////////////////////////
+
+	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
 	newTemplate.content.appendChild(newEntity);
 	assets.appendChild(newTemplate);
 
 
-	//need this or it won't work
+	//	This sets up an update function for how often each networked entity needs to update
+	// position, rotation, or scale based on each transforms setting in the NAF schema.
+	// I'm not sure why it's not a utility function in NAF?
 	const vectorRequiresUpdate = epsilon => {
 		return () => {
 			let prev = null;
@@ -115,7 +128,7 @@ function inject_createInteractiveBall() {
 	// Add the new schema to NAF. and declare the networked components and their update 
 	// sensitivity using the function above if they modify the transforms.
 	NAF.schemas.add({
-		template: "#interactable-ball-media",
+		template: "#vanish-button-media",
 		components: [
 			{
 				component: "position",
@@ -137,14 +150,14 @@ function inject_createInteractiveBall() {
 
 }
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-inject_createInteractiveBall();
+inject_createVanishButton();
 
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
 function mod_addBall() {
 
 	var el = document.createElement("a-entity")
-	el.setAttribute("networked", { template: "#interactable-ball-media" })
+	el.setAttribute("networked", { template: "#vanish-button-media" })
 
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
