@@ -89,10 +89,10 @@
 		tempAtt.value = "index:0"
 		newEntity.setAttributeNode(tempAtt);
 		
-		tempAtt = document.createAttribute("slidemenu-pager")
+		// tempAtt = document.createAttribute("slidemenu-pager")
 		// set it to target the class freeze-unpriviliged-menu.
-		tempAtt.value = "index:0"
-		newEntity.setAttributeNode(tempAtt);
+		// tempAtt.value = "index:0"
+		// newEntity.setAttributeNode(tempAtt);
 						
 	///////////////////////////////////////////////////////////////////////
 		let newChild = document.createElement("a-entity");
@@ -173,10 +173,10 @@
 				component: "slide-element",
 				property: "index"
 			},
-			{
-				component: "slidemenu-pager",
-				property: "index"
-			},
+			// {
+			// 	component: "slidemenu-pager",
+			// 	property: "index"
+			// },
 			"pinnable"
 		],
 		nonAuthorizedComponents: [
