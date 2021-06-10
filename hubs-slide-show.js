@@ -10,8 +10,8 @@ function inject_slideshow_Media() {
 			this.onNext = this.onNext.bind(this);
 			this.update = this.update.bind(this);
 
-			// this.content = slideconfig.slides;
-			// this.data.maxIndex = this.content.length - 1;
+			this.content = slideconfig.slides;
+			this.data.maxIndex = this.content.length - 1;
 
 			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
 			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
@@ -114,8 +114,8 @@ function inject_slideshow_Media() {
 			//this.el.object3D.addEventListener("interact", this.onNext);
 
 			//get our content from the variable in the script injected above.
-			// this.content = slideconfig.slides;
-			// this.max = this.content.length;
+			this.content = slideconfig.slides;
+			this.max = this.content.length;
 
 			NAF.utils
 				.getNetworkedEntity(this.el)
@@ -135,7 +135,7 @@ function inject_slideshow_Media() {
 		async update(oldData) {
 			this.currentSlide = this.data.index;
 
-			// this.el.setAttribute("media-loader", { src: this.content[this.currentSlide], fitToBox: true, resolve: false });
+			this.el.setAttribute("media-loader", { src: this.content[this.currentSlide], fitToBox: true, resolve: false });
 
 			if (this.networkedEl && NAF.utils.isMine(this.networkedEl)) {
 				if (oldData && typeof oldData.index === "number" && oldData.index !== this.data.index) {
@@ -155,7 +155,7 @@ function inject_slideshow_Media() {
 
 		setupSlides() {
 			this.currentSlide = this.networkedEl.getAttribute("slide-element").index;
-			// this.el.setAttribute("media-loader", { src: this.content[this.currentSlide], fitToBox: true, resolve: false })
+			this.el.setAttribute("media-loader", { src: this.content[this.currentSlide], fitToBox: true, resolve: false })
 		}
 	});
 	console.log("media injected");
