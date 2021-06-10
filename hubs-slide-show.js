@@ -22,7 +22,7 @@ function inject_slideshow_Media() {
 				this.hoverMenu = menu;
 				this.nextButton = this.el.querySelector(".next-button [text-button]");
 				//   this.prevButton = this.el.querySelector(".prev-button [text-button]");
-				this.pageLabel = this.el.querySelector(".page-label");
+				// this.pageLabel = this.el.querySelector(".page-label");
 
 				this.nextButton.object3D.addEventListener("interact", this.onNext);
 				//   this.prevButton.object3D.addEventListener("interact", this.onPrev);
@@ -51,9 +51,9 @@ function inject_slideshow_Media() {
 				}
 			}
 
-			if (this.pageLabel) {
-				this.pageLabel.setAttribute("text", "value", `${this.data.index + 1}/${this.data.maxIndex + 1}`);
-			}
+			// if (this.pageLabel) {
+			// 	this.pageLabel.setAttribute("text", "value", `${this.data.index + 1}/${this.data.maxIndex + 1}`);
+			// }
 
 			if (this.nextButton) {
 				const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
