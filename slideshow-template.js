@@ -34,7 +34,7 @@
 		// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
 		bh = document.createAttribute("geometry");
 		//create a simple geometry sphere of 0.2 meters
-		bh.value = "primitive: box; width: .4; height: .4; depth: 1";
+		bh.value = "primitive: box; width: 0.4; height: 0.4; depth: 0.4";
 		newEntity.setAttributeNode(bh);
 
 		bh = document.createAttribute("material");
