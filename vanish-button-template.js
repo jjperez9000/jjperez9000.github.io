@@ -14,16 +14,16 @@ function inject_vanish_button_template() {
 
 	// setup the attributes for the template such and class and components that
 	// should be associated with the template entities
-				
+
 	// set the class to interactable if you want interaction or some other class
 	// based on hubs interaction layers
 	newEntity.setAttribute("class", "interactable");
 
-			
+
 	// for attributes with multiple objects in the schema it's easier to setup
 	// a varibable to hold the attribute and its values then create the node on
 	// the entity
-				
+
 	// the body helper component allows you to setup dynamic attributes for physics
 	// interactions.  the type can be dynamic or static.  collision filters and
 	// masks are used to limit what objects can collide with.  See the body-helper
@@ -42,7 +42,7 @@ function inject_vanish_button_template() {
 	// reuse the same bh variable for a material attribute to color the geometry
 	bh = document.createAttribute("material");
 	// set the color to yellow.  You can set a lot of things here, texture, shininess etc.  See the aframe docs on materials
-	bh.value = "color:yellow;metalness:1.0;roughness:0.0;";
+	bh.value = "color:white;";
 	newEntity.setAttributeNode(bh);
 
 	// set the unowned body kinematic component for the object since it's networked
@@ -64,14 +64,14 @@ function inject_vanish_button_template() {
 
 	// sets whether the object can be scaled when you grab it. Check hubs docs or the component to see how it can be scaled in different modes
 	newEntity.setAttribute("scalable-when-grabbed", "");
-	
+
 	// another component setup.  Check it out in the components in src
 	newEntity.setAttribute("set-xyz-order", "");
-	
+
 	// important! since the matrix auto update on objects in turned off by default
 	// in order to save compute power
 	newEntity.setAttribute("matrix-auto-update", "");
-	
+
 	// whether this object has a hoverable visuals interaction. You may have to add additional child entities to the template to get this to show up.  Check the component to see how it works 
 	newEntity.setAttribute("hoverable-visuals", "");
 
@@ -86,7 +86,7 @@ function inject_vanish_button_template() {
 	//add the listed-media component
 	newEntity.setAttribute("listed-media", "");
 
-/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
 
 	//create a button that we can use and add it to the ball
 	let newChild = document.createElement("a-entity");
@@ -97,7 +97,7 @@ function inject_vanish_button_template() {
 	//give function to the added button
 	newEntity.setAttribute("vanish-item");
 
-/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
 
 	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
 	newTemplate.content.appendChild(newEntity);
