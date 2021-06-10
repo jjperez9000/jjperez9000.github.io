@@ -9,6 +9,7 @@ function inject_vanish_backend() {
 		tick: function () {
 			
 			if (this.searching) {	
+				console.log("searching...");
 				this.vanishButton = this.el.querySelector(".snap-button");
 
 				//save last item interacted with
