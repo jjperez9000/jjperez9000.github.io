@@ -98,7 +98,7 @@
 		menuEntity.setAttribute("class", "ui interactable-ui hover-container");
 		menuEntity.setAttribute("visible", "false");
 		
-		menuEntity.innerHTML = "<a-entity class='prev-button' position='0 0.5 0'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: prev.png; hoverImage: prev.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity><a-entity class='page-label' position='0 -0.2 0' text='value:.; width:2; align:center;' text-raycast-hack></a-entity><a-entity class='next-button' position='0 0 0.1'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: next.png; hoverImage: next.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity>";
+		menuEntity.innerHTML = "<a-entity class='page-label' position='0 -0.2 0' text='value:.; width:2; align:center;' text-raycast-hack></a-entity><a-entity class='next-button' position='0 0 0.1'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: next.png; hoverImage: next.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity>";
 		
 		pageHoverTemplate.content.appendChild(menuEntity);
 						
