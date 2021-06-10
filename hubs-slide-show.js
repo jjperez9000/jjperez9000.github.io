@@ -109,7 +109,7 @@
 
 			//this.onNext = this.onNext.bind(this);
 			this.update = this.update.bind(this);
-			this.setupSlides = this.setupSlides.bind(this);
+			// this.setupSlides = this.setupSlides.bind(this);
 
 			//if you want to disable the menu and make the slide clickable and loopable
 			//then uncomment the line below and remove the slidemenu-pager component from the object
