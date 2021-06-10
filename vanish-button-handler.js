@@ -7,8 +7,9 @@ function inject_vanish_backend() {
 		},
 
 		tick: function () {
-
-			if (this.searching) {
+			
+			if (this.searching) {	
+				console.log("tick claled");
 				this.vanishButton = this.el.querySelector(".snap-button");
 
 				//save last item interacted with
@@ -16,7 +17,7 @@ function inject_vanish_backend() {
 					this.objectToHide = lastItemClicked.id;
 				}
 
-				if (this.vanishButton !== null && this.vanishButton.object3D !== null) {
+				if (this.vanishButton.object3D !== null) {
 					//create an event listener for when the button is clicked
             		this.vanishButton.object3D.addEventListener("interact", () => {						
 						if (this.objectToHide !== undefined) {
