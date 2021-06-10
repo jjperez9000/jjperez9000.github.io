@@ -67,14 +67,7 @@
 			if (this.networkedEl && !NAF.utils.isMine(this.networkedEl) && !NAF.utils.takeOwnership(this.networkedEl)) return;
 			console.log("next clicked")
 		  },
-
-		  onPrev() {
-			if (this.networkedEl && !NAF.utils.isMine(this.networkedEl) && !NAF.utils.takeOwnership(this.networkedEl)) return;
-			const newIndex = Math.max(this.data.index - 1, 0);
-			this.el.setAttribute("slide-element", "index", newIndex);
-			this.el.setAttribute("slidemenu-pager", "index", newIndex);
-		  },
-
+		  
 		  remove() {
 			if (this.networkedEl) {
 			  this.networkedEl.removeEventListener("pinned", this.update);
