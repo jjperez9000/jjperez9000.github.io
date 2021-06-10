@@ -16,7 +16,7 @@ function inject_vanish_backend() {
 					this.objectToHide = lastItemClicked.id;
 				}
 
-				if (this.vanishButton.object3D !== null) {
+				if (this.vanishButton !== null && this.vanishButton.object3D !== null) {
 					//create an event listener for when the button is clicked
             		this.vanishButton.object3D.addEventListener("interact", () => {						
 						if (this.objectToHide !== undefined) {
