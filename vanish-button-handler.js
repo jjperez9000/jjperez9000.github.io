@@ -1,7 +1,7 @@
 		
-	function inject_button_Media() {
+	function inject_slideshow_Media() {
 		
-		AFRAME.registerComponent("slidemenu-pager", {
+		AFRAME.registerComponent("button-pager", {
 		  schema: {
 			index: { default: 0 },
 			maxIndex: { default: 0 }
@@ -39,7 +39,7 @@
 				this.networkedEl.addEventListener("pinned", this.update);
 				this.networkedEl.addEventListener("unpinned", this.update);
 				window.APP.hubChannel.addEventListener("permissions_updated", this.update);
-				this.data.index = this.networkedEl.getAttribute("slide-element").index;
+				this.data.index = this.networkedEl.getAttribute("button-element").index;
 			  })
 			  .catch(() => {}); //ignore exception, entity might not be networked
 			
@@ -67,15 +67,15 @@
 		  onNext() {
 			if (this.networkedEl && !NAF.utils.isMine(this.networkedEl) && !NAF.utils.takeOwnership(this.networkedEl)) return;
 			const newIndex = Math.min(this.data.index + 1, this.data.maxIndex);
-			this.el.setAttribute("slide-element", "index", newIndex);
-			this.el.setAttribute("slidemenu-pager", "index", newIndex);
+			this.el.setAttribute("button-element", "index", newIndex);
+			this.el.setAttribute("button-pager", "index", newIndex);
 		  },
 
 		  onPrev() {
 			if (this.networkedEl && !NAF.utils.isMine(this.networkedEl) && !NAF.utils.takeOwnership(this.networkedEl)) return;
 			const newIndex = Math.max(this.data.index - 1, 0);
-			this.el.setAttribute("slide-element", "index", newIndex);
-			this.el.setAttribute("slidemenu-pager", "index", newIndex);
+			this.el.setAttribute("button-element", "index", newIndex);
+			this.el.setAttribute("button-pager", "index", newIndex);
 		  },
 
 		  remove() {
@@ -109,7 +109,7 @@
 		assets.appendChild(pageHoverTemplate);
 		
 
-		AFRAME.registerComponent("slide-element", {
+		AFRAME.registerComponent("button-element", {
 		schema: {
 			index: { default: 0 },
 			slideScale: {default: 5}
@@ -122,7 +122,7 @@
 			this.setupSlides = this.setupSlides.bind(this);
 
 			//if you want to disable the menu and make the slide clickable and loopable
-			//then uncomment the line below and remove the slidemenu-pager component from the object
+			//then uncomment the line below and remove the button-pager component from the object
 			
 			//this.el.object3D.addEventListener("interact", this.onNext);
 			
@@ -138,7 +138,7 @@
 					this.networkedEl.addEventListener("unpinned", this.update);
 					window.APP.hubChannel.addEventListener("permissions_updated", this.update);
 					this.networkedEl.object3D.scale.setScalar(this.data.slideScale);
-					this.currentSlide = this.networkedEl.getAttribute("slide-element").index;
+					this.currentSlide = this.networkedEl.getAttribute("button-element").index;
 					this.setupSlides();
 				})
 				.catch(() => {}); //ignore exception, entity might not be networked
@@ -152,7 +152,7 @@
 
 				if (this.networkedEl && NAF.utils.isMine(this.networkedEl)) {
 					if (oldData && typeof oldData.index === "number" && oldData.index !== this.data.index) {
-						this.networkedEl.setAttribute("slide-element", {index: this.currentSlide});
+						this.networkedEl.setAttribute("button-element", {index: this.currentSlide});
 					}
 				}
 			},
@@ -167,19 +167,19 @@
 			},
 
 			setupSlides(){
-				this.currentSlide = this.networkedEl.getAttribute("slide-element").index;
+				this.currentSlide = this.networkedEl.getAttribute("button-element").index;
 				this.el.setAttribute("media-loader", {src: this.content[this.currentSlide], fitToBox: true, resolve: false})
 			}
 		});
 }
 
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-inject_button_Media();
+inject_slideshow_Media();
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
 function mod_addButton(){
 	//only perform this once if the slideshow does not exist already.
-	if(document.querySelector("a-entity[slide-element]") == null){
+	if(document.querySelector("a-entity[button-element]") == null){
 		var el = document.createElement("a-entity")
 		el.setAttribute("id", "slideshow")
 		el.setAttribute("networked", { template: "#slideshow-media" } )
