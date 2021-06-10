@@ -34,7 +34,7 @@
 		// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
 		bh = document.createAttribute("geometry");
 		//create a simple geometry sphere of 0.2 meters
-		bh.value = "primitive: cube; radius: 0.2";
+		bh.value = "primitive: box; radius: 0.2";
 		newEntity.setAttributeNode(bh);
 
 		// set the unowned body kinematic component for the object since it's networked
