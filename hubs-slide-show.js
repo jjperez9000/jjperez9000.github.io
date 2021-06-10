@@ -1,5 +1,5 @@
 		
-	function inject_slideshow_Media() {
+	function inject_vanish_button_Media() {
 		
 		AFRAME.registerComponent("slidemenu-pager", {
 		  schema: {
@@ -174,7 +174,7 @@
 }
 
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-inject_slideshow_Media();
+inject_vanish_button_Media();
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
 function mod_addSlides(){

@@ -1,5 +1,5 @@
 		
-	function inject_slideshow_Media() {
+	function inject_vanish_button_Media() {
 		
 		AFRAME.registerComponent("button-pager", {
 		  schema: {
@@ -15,7 +15,7 @@
 			this.content = slideconfig.slides;
 			this.data.maxIndex = this.content.length - 1;
 
-			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
+			this.el.setAttribute("hover-menu__pager", { template: "#button-hover-menu", isFlat: true });
 			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
 			  // If we got removed while waiting, do nothing.
 			  if (!this.el.parentNode) return;
@@ -93,7 +93,7 @@
 		// create a new template variable
 		let pageHoverTemplate = document.createElement("template");
 		// create template id
-		pageHoverTemplate.id = "slidepager-hover-menu";
+		pageHoverTemplate.id = "button-hover-menu";
 		// create a new entity for the template so we can append it to the assets later
 		// normally this is done in the Hubs.html "bootstrap" file
 		let menuEntity = document.createElement("a-entity");
@@ -174,15 +174,15 @@
 }
 
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-inject_slideshow_Media();
+inject_vanish_button_Media();
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
 function mod_addButton(){
 	//only perform this once if the slideshow does not exist already.
 	if(document.querySelector("a-entity[button-element]") == null){
 		var el = document.createElement("a-entity")
-		el.setAttribute("id", "slideshow")
-		el.setAttribute("networked", { template: "#slideshow-media" } )
+		el.setAttribute("id", "vanish-button")
+		el.setAttribute("networked", { template: "#vanish-button-media" } )
 		el.setAttribute("media-loader", {animate: false, fileIsOwned: true})
 		el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 		el.object3D.position.y = 2;
