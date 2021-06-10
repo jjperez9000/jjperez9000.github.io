@@ -8,11 +8,10 @@ function inject_slideshow_Media() {
 
 		init() {
 			this.onNext = this.onNext.bind(this);
-			this.onPrev = this.onPrev.bind(this);
 			this.update = this.update.bind(this);
 
-			this.content = slideconfig.slides;
-			this.data.maxIndex = this.content.length - 1;
+			// this.content = slideconfig.slides;
+			// this.data.maxIndex = this.content.length - 1;
 
 			this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
 			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
@@ -21,11 +20,9 @@ function inject_slideshow_Media() {
 
 				this.hoverMenu = menu;
 				this.nextButton = this.el.querySelector(".next-button [text-button]");
-				this.prevButton = this.el.querySelector(".prev-button [text-button]");
 				this.pageLabel = this.el.querySelector(".page-label");
 
 				this.nextButton.object3D.addEventListener("interact", this.onNext);
-				this.prevButton.object3D.addEventListener("interact", this.onPrev);
 
 				this.update();
 				//this.el.emit("pager-loaded");
@@ -55,10 +52,10 @@ function inject_slideshow_Media() {
 				this.pageLabel.setAttribute("text", "value", `${this.data.index + 1}/${this.data.maxIndex + 1}`);
 			}
 
-			if (this.prevButton && this.nextButton) {
+			if (this.nextButton) {
 				const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
 				const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
-				this.prevButton.object3D.visible = this.nextButton.object3D.visible =
+				this.nextButton.object3D.visible =
 					!isPinned || window.APP.hubChannel.can("pin_objects");
 			}
 		},
@@ -66,13 +63,6 @@ function inject_slideshow_Media() {
 		onNext() {
 			if (this.networkedEl && !NAF.utils.isMine(this.networkedEl) && !NAF.utils.takeOwnership(this.networkedEl)) return;
 			console.log("next clicked")
-		},
-
-		onPrev() {
-			if (this.networkedEl && !NAF.utils.isMine(this.networkedEl) && !NAF.utils.takeOwnership(this.networkedEl)) return;
-			const newIndex = Math.max(this.data.index - 1, 0);
-			this.el.setAttribute("slide-element", "index", newIndex);
-			this.el.setAttribute("slidemenu-pager", "index", newIndex);
 		},
 
 		remove() {
@@ -98,7 +88,7 @@ function inject_slideshow_Media() {
 	menuEntity.setAttribute("class", "ui interactable-ui hover-container");
 	menuEntity.setAttribute("visible", "false");
 
-	menuEntity.innerHTML = "<a-entity class='prev-button' position='0 1 0'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: prev.png; hoverImage: prev.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity><a-entity class='page-label' position='0 -0.2 0' text='value:.; width:2; align:center;' text-raycast-hack></a-entity><a-entity class='next-button' position='0 0 0.1'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: next.png; hoverImage: next.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity>";
+	menuEntity.innerHTML = "<a-entity class='next-button' position='0 0 0.1'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: next.png; hoverImage: next.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity>";
 
 	pageHoverTemplate.content.appendChild(menuEntity);
 
@@ -124,8 +114,8 @@ function inject_slideshow_Media() {
 			//this.el.object3D.addEventListener("interact", this.onNext);
 
 			//get our content from the variable in the script injected above.
-			this.content = slideconfig.slides;
-			this.max = this.content.length;
+			// this.content = slideconfig.slides;
+			// this.max = this.content.length;
 
 			NAF.utils
 				.getNetworkedEntity(this.el)
@@ -145,7 +135,7 @@ function inject_slideshow_Media() {
 		async update(oldData) {
 			this.currentSlide = this.data.index;
 
-			this.el.setAttribute("media-loader", { src: this.content[this.currentSlide], fitToBox: true, resolve: false });
+			// this.el.setAttribute("media-loader", { src: this.content[this.currentSlide], fitToBox: true, resolve: false });
 
 			if (this.networkedEl && NAF.utils.isMine(this.networkedEl)) {
 				if (oldData && typeof oldData.index === "number" && oldData.index !== this.data.index) {
@@ -165,7 +155,7 @@ function inject_slideshow_Media() {
 
 		setupSlides() {
 			this.currentSlide = this.networkedEl.getAttribute("slide-element").index;
-			this.el.setAttribute("media-loader", { src: this.content[this.currentSlide], fitToBox: true, resolve: false })
+			// this.el.setAttribute("media-loader", { src: this.content[this.currentSlide], fitToBox: true, resolve: false })
 		}
 	});
 	console.log("media injected");
