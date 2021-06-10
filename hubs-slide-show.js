@@ -160,7 +160,7 @@ function inject_slideshow_Media() {
 		// 		this.currentSlide = this.networkedEl.getAttribute("slide-element").index;
 		// 		// this.el.setAttribute("media-loader", {src: this.content[this.currentSlide], fitToBox: true, resolve: false})
 		// 	}
-	});
+	// });
 }
 
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
