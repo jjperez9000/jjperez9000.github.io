@@ -170,6 +170,8 @@ function mod_addBall() {
 	el.setAttribute("networked", { template: "#vanish-button-media" })
 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true; autoLockOnRelease: true");
 	el.setAttribute("media-loader", { animate: false, fileIsOwned: true });
+	el.object3D.position.x = document.getElementById("avatar-rig").getAttribute("position").x + 1;
+	el.object3D.position.z = document.getElementById("avatar-rig").getAttribute("position").z + 1;
 	el.object3D.position.y = 2;
 
 	AFRAME.scenes[0].appendChild(el);
