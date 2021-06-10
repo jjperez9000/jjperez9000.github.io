@@ -38,7 +38,7 @@
 				this.networkedEl.addEventListener("pinned", this.update);
 				this.networkedEl.addEventListener("unpinned", this.update);
 				window.APP.hubChannel.addEventListener("permissions_updated", this.update);
-				this.data.index = this.networkedEl.getAttribute("slide-element").index;
+				// this.data.index = this.networkedEl.getAttribute("slide-element").index;
 			  })
 			  .catch(() => {}); //ignore exception, entity might not be networked
 			
