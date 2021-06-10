@@ -169,14 +169,14 @@
 				component: "media-pdf",
 				property: "index"
 			},
-			{
-				component: "slide-element",
-				property: "index"
-			},
 			// {
-			// 	component: "slidemenu-pager",
+			// 	component: "slide-element",
 			// 	property: "index"
 			// },
+			{
+				component: "slidemenu-pager",
+				property: "index"
+			},
 			"pinnable"
 		],
 		nonAuthorizedComponents: [
