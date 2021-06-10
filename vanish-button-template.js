@@ -1,5 +1,5 @@
 		
-	function inject_slideshow_template() {
+	function inject_button_template() {
 		//Query assets in order to setup template
 		let assets = document.querySelector("a-assets");
 		// create a new template variable
@@ -189,4 +189,4 @@
 
 }
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-inject_slideshow_template();
+inject_button_template();
