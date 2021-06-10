@@ -1,7 +1,7 @@
 		
 	function inject_vanish_button_Media() {
 		
-		AFRAME.registerComponent("button-pager", {
+		AFRAME.registerComponent("vanish-button-pager", {
 		  schema: {
 			index: { default: 0 },
 			maxIndex: { default: 0 }
@@ -15,7 +15,7 @@
 			this.content = slideconfig.slides;
 			this.data.maxIndex = this.content.length - 1;
 
-			this.el.setAttribute("hover-menu__pager", { template: "#button-hover-menu", isFlat: true });
+			this.el.setAttribute("hover-menu__pager", { template: "#vanish-button-hover-menu", isFlat: true });
 			this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
 			  // If we got removed while waiting, do nothing.
 			  if (!this.el.parentNode) return;
@@ -39,7 +39,7 @@
 				this.networkedEl.addEventListener("pinned", this.update);
 				this.networkedEl.addEventListener("unpinned", this.update);
 				window.APP.hubChannel.addEventListener("permissions_updated", this.update);
-				this.data.index = this.networkedEl.getAttribute("button-element").index;
+				this.data.index = this.networkedEl.getAttribute("vanish-button-element").index;
 			  })
 			  .catch(() => {}); //ignore exception, entity might not be networked
 			
@@ -67,15 +67,15 @@
 		  onNext() {
 			if (this.networkedEl && !NAF.utils.isMine(this.networkedEl) && !NAF.utils.takeOwnership(this.networkedEl)) return;
 			const newIndex = Math.min(this.data.index + 1, this.data.maxIndex);
-			this.el.setAttribute("button-element", "index", newIndex);
-			this.el.setAttribute("button-pager", "index", newIndex);
+			this.el.setAttribute("vanish-button-element", "index", newIndex);
+			this.el.setAttribute("vanish-button-pager", "index", newIndex);
 		  },
 
 		  onPrev() {
 			if (this.networkedEl && !NAF.utils.isMine(this.networkedEl) && !NAF.utils.takeOwnership(this.networkedEl)) return;
 			const newIndex = Math.max(this.data.index - 1, 0);
-			this.el.setAttribute("button-element", "index", newIndex);
-			this.el.setAttribute("button-pager", "index", newIndex);
+			this.el.setAttribute("vanish-button-element", "index", newIndex);
+			this.el.setAttribute("vanish-button-pager", "index", newIndex);
 		  },
 
 		  remove() {
@@ -93,7 +93,7 @@
 		// create a new template variable
 		let pageHoverTemplate = document.createElement("template");
 		// create template id
-		pageHoverTemplate.id = "button-hover-menu";
+		pageHoverTemplate.id = "vanish-button-hover-menu";
 		// create a new entity for the template so we can append it to the assets later
 		// normally this is done in the Hubs.html "bootstrap" file
 		let menuEntity = document.createElement("a-entity");
@@ -101,7 +101,7 @@
 		menuEntity.setAttribute("class", "ui interactable-ui hover-container");
 		menuEntity.setAttribute("visible", "false");
 		
-		menuEntity.innerHTML = "<a-entity class='prev-button' position='-0.50 0 0'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: prev.png; hoverImage: prev.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity><a-entity class='page-label' position='0 -0.2 0' text='value:.; width:2; align:center;' text-raycast-hack></a-entity><a-entity class='next-button' position='0 0 .2'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: next.png; hoverImage: next.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity>";
+		menuEntity.innerHTML = "<a-entity class='prev-button' position='-0.50 0 0'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: prev.png; hoverImage: prev.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity><a-entity class='page-label' position='0 -0.2 0' text='value:.; width:2; align:center;' text-raycast-hack></a-entity><a-entity class='next-button' position='0.50 0 0'><a-entity is-remote-hover-target tags='singleActionButton:true; isHoverMenuChild: true;' mixin='rounded-text-button' slice9='width: 0.2'><a-entity sprite icon-button='image: next.png; hoverImage: next.png;' scale='0.070 0.070 0.070' position='0 0 0.005' ></a-entity></a-entity></a-entity>";
 		
 		pageHoverTemplate.content.appendChild(menuEntity);
 						
@@ -109,7 +109,7 @@
 		assets.appendChild(pageHoverTemplate);
 		
 
-		AFRAME.registerComponent("button-element", {
+		AFRAME.registerComponent("vanish-button-element", {
 		schema: {
 			index: { default: 0 },
 			slideScale: {default: 5}
@@ -122,7 +122,7 @@
 			this.setupSlides = this.setupSlides.bind(this);
 
 			//if you want to disable the menu and make the slide clickable and loopable
-			//then uncomment the line below and remove the button-pager component from the object
+			//then uncomment the line below and remove the vanish-button-pager component from the object
 			
 			//this.el.object3D.addEventListener("interact", this.onNext);
 			
@@ -138,7 +138,7 @@
 					this.networkedEl.addEventListener("unpinned", this.update);
 					window.APP.hubChannel.addEventListener("permissions_updated", this.update);
 					this.networkedEl.object3D.scale.setScalar(this.data.slideScale);
-					this.currentSlide = this.networkedEl.getAttribute("button-element").index;
+					this.currentSlide = this.networkedEl.getAttribute("vanish-button-element").index;
 					this.setupSlides();
 				})
 				.catch(() => {}); //ignore exception, entity might not be networked
@@ -152,7 +152,7 @@
 
 				if (this.networkedEl && NAF.utils.isMine(this.networkedEl)) {
 					if (oldData && typeof oldData.index === "number" && oldData.index !== this.data.index) {
-						this.networkedEl.setAttribute("button-element", {index: this.currentSlide});
+						this.networkedEl.setAttribute("vanish-button-element", {index: this.currentSlide});
 					}
 				}
 			},
@@ -167,7 +167,7 @@
 			},
 
 			setupSlides(){
-				this.currentSlide = this.networkedEl.getAttribute("button-element").index;
+				this.currentSlide = this.networkedEl.getAttribute("vanish-button-element").index;
 				this.el.setAttribute("media-loader", {src: this.content[this.currentSlide], fitToBox: true, resolve: false})
 			}
 		});
@@ -178,8 +178,8 @@ inject_vanish_button_Media();
 
 // we add the prefix mod_ to this function to allow it to be targeted by the chat interface
 function mod_addButton(){
-	//only perform this once if the slideshow does not exist already.
-	if(document.querySelector("a-entity[button-element]") == null){
+	//only perform this once if the vanish-button does not exist already.
+	if(document.querySelector("a-entity[vanish-button-element]") == null){
 		var el = document.createElement("a-entity")
 		el.setAttribute("id", "vanish-button")
 		el.setAttribute("networked", { template: "#vanish-button-media" } )
@@ -188,6 +188,6 @@ function mod_addButton(){
 		el.object3D.position.y = 2;
 		AFRAME.scenes[0].appendChild(el)
 	}else{
-		console.log("a slideshow already exists");
+		console.log("a vanish-button already exists");
 	}
 }

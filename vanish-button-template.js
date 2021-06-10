@@ -1,11 +1,11 @@
 		
-	function inject_button_template() {
+	function inject_vanish_button_template() {
 		//Query assets in order to setup template
 		let assets = document.querySelector("a-assets");
 		// create a new template variable
 		let newTemplate = document.createElement("template");
 		// create template id
-		newTemplate.id = "button-media";
+		newTemplate.id = "vanish-button-media";
 		// create a new entity for the template so we can append it to the assets later
 		// normally this is done in the Hubs.html "bootstrap" file
 		let newEntity = document.createElement("a-entity");
@@ -80,12 +80,12 @@
 	///////////////////////////////////////////////////////////////////////
 
 		//add our slide-counter component created below.  I include the setting of index to show how it keeps track of the current slide
-		tempAtt = document.createAttribute("button-element")
+		tempAtt = document.createAttribute("vanish-button-element")
 		// set it to target the class freeze-unpriviliged-menu.
 		tempAtt.value = "index:0"
 		newEntity.setAttributeNode(tempAtt);
 		
-		tempAtt = document.createAttribute("button-pager")
+		tempAtt = document.createAttribute("vanish-button-pager")
 		// set it to target the class freeze-unpriviliged-menu.
 		tempAtt.value = "index:0"
 		newEntity.setAttributeNode(tempAtt);
@@ -129,7 +129,7 @@
 	// sensitivity using the function above if they modify the transforms.
 	NAF.schemas.add({
 		// template to add (created above)
-		template: "#button-media",
+		template: "#vanish-button-media",
 		// we need to tell NAF what components to share between clients
 		// in this case we share the position, rotation, scale, the media-loader (which loads the media)
 		// the media-video time attribute(a component registered in the media-loader in case you are looking for it)
@@ -166,11 +166,11 @@
 				property: "index"
 			},
 			{
-				component: "button-element",
+				component: "vanish-button-element",
 				property: "index"
 			},
 			{
-				component: "button-pager",
+				component: "vanish-button-pager",
 				property: "index"
 			},
 			"pinnable"
@@ -189,4 +189,4 @@
 
 }
 // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-inject_button_template();
+inject_vanish_button_template();
