@@ -1,7 +1,7 @@
 
 
 function inject_vanish_button_template() {
-
+	console.log("injecting vutton thing")
 	//Query assets in order to setup template
 	let assets = document.querySelector("a-assets");
 	// create a new template variable
