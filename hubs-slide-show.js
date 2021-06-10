@@ -8,7 +8,7 @@
 
 		  init() {
 			this.onNext = this.onNext.bind(this);
-			this.onPrev = this.onPrev.bind(this);
+			// this.onPrev = this.onPrev.bind(this);
 			this.update = this.update.bind(this);
 			
 			this.content = slideconfig.slides;
@@ -21,11 +21,11 @@
 
 			  this.hoverMenu = menu;
 			  this.nextButton = this.el.querySelector(".next-button [text-button]");
-			  this.prevButton = this.el.querySelector(".prev-button [text-button]");
+			//   this.prevButton = this.el.querySelector(".prev-button [text-button]");
 			  this.pageLabel = this.el.querySelector(".page-label");
 
 			  this.nextButton.object3D.addEventListener("interact", this.onNext);
-			  this.prevButton.object3D.addEventListener("interact", this.onPrev);
+			//   this.prevButton.object3D.addEventListener("interact", this.onPrev);
 
 			  this.update();
 			  //this.el.emit("pager-loaded");
@@ -55,10 +55,10 @@
 			  this.pageLabel.setAttribute("text", "value", `${this.data.index + 1}/${this.data.maxIndex + 1}`);
 			}
 
-			if (this.prevButton && this.nextButton) {
+			if (this.nextButton) {
 			  const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
 			  const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
-			  this.prevButton.object3D.visible = this.nextButton.object3D.visible =
+			  this.nextButton.object3D.visible =
 				!isPinned || window.APP.hubChannel.can("pin_objects");
 			}
 		  },
