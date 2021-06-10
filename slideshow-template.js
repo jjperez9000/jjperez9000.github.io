@@ -84,15 +84,15 @@
 	///////////////////////////////////////////////////////////////////////
 
 		//add our slide-counter component created below.  I include the setting of index to show how it keeps track of the current slide
-		tempAtt = document.createAttribute("slide-element")
+		// tempAtt = document.createAttribute("slide-element")
+		// // set it to target the class freeze-unpriviliged-menu.
+		// tempAtt.value = "index:0"
+		// newEntity.setAttributeNode(tempAtt);
+		
+		tempAtt = document.createAttribute("slidemenu-pager")
 		// set it to target the class freeze-unpriviliged-menu.
 		tempAtt.value = "index:0"
 		newEntity.setAttributeNode(tempAtt);
-		
-		// tempAtt = document.createAttribute("slidemenu-pager")
-		// set it to target the class freeze-unpriviliged-menu.
-		// tempAtt.value = "index:0"
-		// newEntity.setAttributeNode(tempAtt);
 						
 	///////////////////////////////////////////////////////////////////////
 		let newChild = document.createElement("a-entity");
