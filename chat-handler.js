@@ -2,35 +2,57 @@
 // can attach new commands which will start the mods we inject.  There are other ways to
 // do this like trigger-volumes, but this gives us more control and predictable behavior
 
+const { clear } = require("console");
+
 var presenceIntervalCheck;
 var observer;
 var groupObserver;
 var currentGroup = null;
 
-//function to detect when a new chat window is pulled up
-function detectLog() {
-	console.log("the log does not exist yet");
-	presenceIntervalCheck = setInterval(function(){ 
-		if(document.querySelector("[class*=message-list]") != null ) {
-			console.log("found presence");
+var chatButtonIntervalCheck = setInterval(function () {
+	if (document.querySelector("[class*=accent4]") !== undefined) {
+		
+		console.log("accent4 found")
+		clearInterval(chatButtonIntervalCheck);
 
-			//add a function to the 'x' button on the window so that when it is closed
-			//we start searching for a window again
+		document.querySelector("[class*=accent4]").onclick = function() {
 			document.querySelector("[class*=icon-button]").onclick = function() {
 				observer.disconnect();
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
 				detectLog();
 			}
-
 			checkPresence();
-		}else{
-			// console.log("checking presence");
 		}
-	}, 2000);
-}
+	}
+}, 2000)
 
-detectLog();
+// //function to detect when a new chat window is pulled up
+// function detectLog() {
+// 	console.log("the log does not exist yet");
+// 	presenceIntervalCheck = setInterval(function(){ 
+// 		if(document.querySelector("[class*=message-list]") != null ) {
+// 			console.log("found presence");
+
+// 			//add a function to the 'x' button on the window so that when it is closed
+// 			//we start searching for a window again
+// 			document.querySelector("[class*=icon-button]").onclick = function() {
+// 				observer.disconnect();
+// 				console.log("window closed");
+// 				console.log(document.querySelector("[class*=message-list]"))
+// 				detectLog();
+// 			}
+
+// 			checkPresence();
+// 		}else{
+// 			// console.log("checking presence");
+// 		}
+// 	}, 2000);
+// }
+
+// detectLog();
+
+
 
 //this function watches for 2 different things: 
 //new items in message list and new child messages
@@ -80,7 +102,7 @@ function checkPresence() {
 	observer.observe(watchedNode, {childList: true});
 
 	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
-	clearInterval(presenceIntervalCheck);
+	// clearInterval(presenceIntervalCheck);
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
