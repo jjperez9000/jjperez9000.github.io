@@ -4,8 +4,8 @@
 
 // const { clear } = require("console");
 
-var presenceIntervalCheck;
-var observer;
+var chatWindowIntervalCheck;
+var groupCreationObserver;
 var groupObserver;
 var currentGroup = null;
 
@@ -22,14 +22,14 @@ var chatButtonIntervalCheck = setInterval(function () {
 // //function to detect when a new chat window is pulled up
 function detectLog() {
 	console.log("the log does not exist yet");
-	presenceIntervalCheck = setInterval(function(){ 
+	chatWindowIntervalCheck = setInterval(function(){ 
 		if(document.querySelector("[class*=message-list]") != null ) {
 			console.log("found presence");
 
 			//add a function to the 'x' button on the window so that when it is closed
 			//we start searching for a window again
 			document.querySelector("[class*=icon-button]").onclick = document.querySelector("[class*=accent4]").onclick = function() {
-				observer.disconnect();
+				groupCreationObserver.disconnect();
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
 				detectLog();
@@ -62,7 +62,7 @@ function checkPresence() {
 		groupObserver.observe(watchedNode2, {childList: true});
 	}
 
-	observer = new MutationObserver(function(mutations) {
+	groupCreationObserver = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {		
 			if (mutation.addedNodes) {
 				for (var n of mutation.addedNodes){
@@ -91,10 +91,10 @@ function checkPresence() {
 
 	});
 
-	observer.observe(watchedNode, {childList: true});
+	groupCreationObserver.observe(watchedNode, {childList: true});
 
 	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
-	clearInterval(presenceIntervalCheck);
+	clearInterval(chatWindowIntervalCheck);
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
