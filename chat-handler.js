@@ -28,7 +28,8 @@ function detectLog() {
 
 			//add a function to the 'x' button on the window so that when it is closed
 			//we start searching for a window again
-			document.querySelector("[class*=icon-button]").onclick = function() {
+			document.querySelector("[class*=icon-button]").onclick = 
+			document.querySelector("[class*=accent4]") = function() {
 				observer.disconnect();
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
@@ -94,7 +95,7 @@ function checkPresence() {
 	observer.observe(watchedNode, {childList: true});
 
 	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
-	// clearInterval(presenceIntervalCheck);
+	clearInterval(presenceIntervalCheck);
 }
 
 document.querySelector("a-scene").addEventListener("chatevent", e => {
