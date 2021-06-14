@@ -28,8 +28,7 @@ function detectLog() {
 
 			//add a function to the 'x' button on the window so that when it is closed
 			//we start searching for a window again
-			document.querySelector("[class*=icon-button]").onclick = 
-			document.querySelector("[class*=accent4]") = function() {
+			document.querySelector("[class*=icon-button]").onclick = document.querySelector("[class*=accent4]").onclick = function() {
 				observer.disconnect();
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
