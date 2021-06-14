@@ -2,7 +2,7 @@
 // can attach new commands which will start the mods we inject.  There are other ways to
 // do this like trigger-volumes, but this gives us more control and predictable behavior
 
-const { clear } = require("console");
+// const { clear } = require("console");
 
 var presenceIntervalCheck;
 var observer;
