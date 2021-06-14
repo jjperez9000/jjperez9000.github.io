@@ -1,309 +1,119 @@
+// the following ia a presence checker which waits for the chat log to exist so that it
+// can attach new commands which will start the mods we inject.  There are other ways to
+// do this like trigger-volumes, but this gives us more control and predictable behavior
 
+// const { clear } = require("console");
 
-// 
+var presenceIntervalCheck;
+var observer;
+var groupObserver;
+var currentGroup = null;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function inject_createInteractiveBall() {
-				
-// 	//Query assets in order to setup template
-// 	let assets = document.querySelector("a-assets");
-// 	// create a new template variable
-// 	let newTemplate = document.createElement("template");
-// 	// create template id
-// 	newTemplate.id = "interactable-ball-media";
-// 	// create a new entity for the template so we can append it to the assets later
-// 	// normally this is done in the Hubs.html "bootstrap" file
-// 	let newEntity = document.createElement("a-entity");
-// 	// setup the attributes for the template such and class and components that
-// 	// should be associated with the template entities
-				
-// 	// set the class to interactable if you want interaction or some other class
-// 	// based on hubs interaction layers
-// 	newEntity.setAttribute("class", "interactable");
-				
-// 	// for attributes with multiple objects in the schema it's easier to setup
-// 	// a varibable to hold the attribute and its values then create the node on
-// 	// the entity
-				
-// 	// the body helper component allows you to setup dynamic attributes for physics
-// 	// interactions.  the type can be dynamic or static.  collision filters and
-// 	// masks are used to limit what objects can collide with.  See the body-helper
-// 	// component for more information
-// 	let bh = document.createAttribute("body-helper");
-// 	bh.value = "type: dynamic; mass: 1; collisionFilterGroup: 1; collisionFilterMask: 15;";
-// 	newEntity.setAttributeNode(bh);
-				
-// 	// An object needs to have geometry in order to be visible and work with physics
-// 	// here we reuse the bh variable since the body helper node has been added to the entity.  In this case we are creating the geometry attribute (see aframe docs)
-// 	bh = document.createAttribute("geometry");
-// 	// create a sphere geometry with a radius of 0.5 meters
-// 	bh.value = "primitive: sphere; radius: 0.2";
-// 	newEntity.setAttributeNode(bh);
-
-// 	// reuse the same bh variable for a material attribute to color the geometry
-// 	bh = document.createAttribute("material");
-// 	// set the color to yellow.  You can set a lot of things here, texture, shininess etc.  See the aframe docs on materials
-// 	bh.value = "color:yellow;metalness:1.0;roughness:0.0;";
-// 	newEntity.setAttributeNode(bh);
-				
-// 	// set the unowned body kinematic component for the object since it's networked
-// 	// and physics related.
-// 	newEntity.setAttribute("set-unowned-body-kinematic", "");
-// 	// sets the remote hover target component on the object
-// 	newEntity.setAttribute("is-remote-hover-target", "");
-				
-// 	// the tags component allows you to filter the collisions and interactable
-// 	// qualities of the entity.  We can reuse bh to set all it's values
-// 	bh = document.createAttribute("tags")
-// 	// set it to be a hand collision target, holdable, give it a hand constraint, a remote constraint, and set to be inspectable with a right click.
-// 	bh.value = "isHandCollisionTarget: true; isHoldable: true; offersHandConstraint: true; offersRemoteConstraint: true; inspectable: true;";
-// 	newEntity.setAttributeNode(bh);
-				
-// 	// you can set the objects to be destroyed at extreme distances in order to avoid having a bunch of hard to find physics objects falling in your hub
-// 	newEntity.setAttribute("destroy-at-extreme-distances", "");
-// 	// sets whether the object can be scaled when you grab it. Check hubs docs or the component to see how it can be scaled in different modes
-// 	newEntity.setAttribute("scalable-when-grabbed", "");
-// 				// another component setup.  Check it out in the components in src
-// 	newEntity.setAttribute("set-xyz-order", "");
-// 	// important! since the matrix auto update on objects in turned off by default
-// 	// in order to save compute power
-// 	newEntity.setAttribute("matrix-auto-update", "");
-// 	// whether this object has a hoverable visuals interaction. You may have to add additional child entities to the template to get this to show up.  Check the component to see how it works 
-// 	newEntity.setAttribute("hoverable-visuals", "");
-
-// 	// Important!  This Component helps you set the collision shape for the object
-// 	// without it set on the actual entity which contains the mesh (set with the 
-// 	// geometry component above in this case) the physics won't collide and the 
-// 	// object will fall through the ground.  Check the component for details
-// 	bh = document.createAttribute("shape-helper")
-// 	bh.value = "";
-// 	newEntity.setAttributeNode(bh);
-				
-// 	//add the listed-media component
-// 	newEntity.setAttribute("listed-media", "");
-	
-// 	//add the camera-cube-env component
-// 	// newEntity.setAttribute("camera-cube-env", "");
-
-// 	//slap the button on there
-// 	let newChild = document.createElement("a-entity");
-// 	newChild.setAttribute("class", "ui interactable-ui");
-// 	newChild.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
-// 	newEntity.appendChild(newChild);
-				
-// 	//Once all the attributes are setup on the entity you can append it to the template variable content created above.
-// 	newTemplate.content.appendChild(newEntity);
-				
-// 	// once the template is created you append it to the assets
-// 	assets.appendChild(newTemplate);
-				
-				
-// 	//	This sets up an update function for how often each networked entity needs to update
-// 	// position, rotation, or scale based on each transforms setting in the NAF schema.
-// 	// I'm not sure why it's not a utility function in NAF?
-// 	const vectorRequiresUpdate = epsilon => {
-// 		return () => {
-// 			let prev = null;
-
-// 			return curr => {
-// 				if (prev === null) {
-// 					prev = new THREE.Vector3(curr.x, curr.y, curr.z);
-// 					return true;
-// 				} else if (!NAF.utils.almostEqualVec3(prev, curr, epsilon)) {
-// 					prev.copy(curr);
-// 					return true;
-// 				}
-
-// 				return false;
-// 			};
-// 		};
-// 	};
-
-// 	// Add the new schema to NAF. and declare the networked components and their update 
-// 	// sensitivity using the function above if they modify the transforms.
-// 	NAF.schemas.add({
-// 		template: "#interactable-ball-media",
-// 		components: [
-// 			{
-// 				component: "position",
-// 				requiresNetworkUpdate: vectorRequiresUpdate(0.001)
-// 			},
-// 			{
-// 				component: "rotation",
-// 				requiresNetworkUpdate: vectorRequiresUpdate(0.5)
-// 			},
-// 			{
-// 				component: "scale",
-// 				requiresNetworkUpdate: vectorRequiresUpdate(0.001)
-// 			},
-// 			"media-loader",
-// 			"material",
-// 			"pinnable"
-// 		]
-// 	});
+var chatButtonIntervalCheck = setInterval(function () {
+	if (document.querySelector("[class*=accent4]") !== undefined) {
 		
-// }
-// // we add the prefix inject_ to our utility functions to isolate them from the global namespace
-// inject_createInteractiveBall();
+		console.log("accent4 found")
+		clearInterval(chatButtonIntervalCheck);
+
+		detectLog();
+	}
+}, 2000)
+
+// //function to detect when a new chat window is pulled up
+function detectLog() {
+	console.log("the log does not exist yet");
+	presenceIntervalCheck = setInterval(function(){ 
+		if(document.querySelector("[class*=message-list]") != null ) {
+			console.log("found presence");
+
+			//add a function to the 'x' button on the window so that when it is closed
+			//we start searching for a window again
+			document.querySelector("[class*=icon-button]").onclick = document.querySelector("[class*=accent4]").onclick = function() {
+				observer.disconnect();
+				console.log("window closed");
+				console.log(document.querySelector("[class*=message-list]"))
+				detectLog();
+			}
+
+			checkPresence();
+		}else{
+			// console.log("checking presence");
+		}
+	}, 2000);
+}
+
+// detectLog();
 
 
-// we add the prefix mod_ to this function to allow it to be targeted by the chat interface
-// function mod_addBall(){
-// 	// console.log("the man you want should be just below me ")
 
-
-// 	var el = document.createElement("a-entity")
-// 	el.setAttribute("networked", { template: "#interactable-ball-media" } )
-// 	el.setAttribute("floaty-object", "modifyGravityOnRelease: true; autoLockOnLoad: true;");
-// 	el.object3D.position.y = 2;
-// 	AFRAME.scenes[0].appendChild(el)
-
+//this function watches for 2 different things: 
+//new items in message list and new child messages
+//anytime a new user says something a new element is added to the message list
+//all of their subsequent messages (until someone else speaks) will be children of that new element
+//watchedNode tracks the new element, and watchedNode2 tracks that element's children
+function checkPresence() {
 	
-// 	// document.querySelectorAll(".snap-button")[document.querySelectorAll(".snap-button").length-1].object3D.addEventListener("interact", () => console.log("button clicked! HURRAH!!!"));
+	const watchedNode = document.querySelector("[class*=message-list]");
 	
-// }
+	//check if we were observing a group before checkPresence() was called
+	//this will be the case if a window had previously opened before
+	if (currentGroup != null) {
+		const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1];
+		groupObserver.observe(watchedNode2, {childList: true});
+	}
 
+	observer = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {		
+			if (mutation.addedNodes) {
+				for (var n of mutation.addedNodes){
 
+					document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: n.lastChild.textContent } }));		
 
+					//begin observing the new children in the message group
+					const watchedNode2 = document.querySelectorAll("[class*=message-group-messages]")[document.querySelectorAll("[class*=message-group-messages]").length-1];
+					currentGroup = watchedNode2;
 
+					groupObserver = new MutationObserver(function(mutations) {
 
+						mutations.forEach(function(mutation) {
+							
+							if (mutation.addedNodes) {
+								for (var i of mutation.addedNodes){
+									document.querySelector("a-scene").dispatchEvent(new CustomEvent("chatevent", { bubbles: true, detail: { text: i.textContent } }));									
+								}
+							}
+						})
+					});
+					groupObserver.observe(watchedNode2, {childList: true});
+				}
+			}
+		})
 
-// function inject_vanish_button() {
-//     var temp = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0.15 0.08' scale='0.75 0.75 0.75' slice9='' text-button=''><a-entity sprite='' class='snap-icon' icon-button='image: snap_camera.png; hoverImage: snap_camera.png;' scale='0.2 0.2 0.2' position='0 0.002 0.001'></a-entity></a-entity>"
+	});
 
-// }
+	observer.observe(watchedNode, {childList: true});
 
-			// this.el.setAttribute("hover-menu__pager", { template: "#slidepager-hover-menu", isFlat: true });
-			// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
-			// 	// If we got removed while waiting, do nothing.
-			// 	if (!this.el.parentNode) {
-			// 		console.log("nothing found");
-			// 		return;
-			// 	}
+	//once the mutation observer is attached to the presence-log we can clear the interval that attaches it
+	clearInterval(presenceIntervalCheck);
+}
 
-			// 	this.hoverMenu = menu;
-
-
-
-
-			// 	// const pinnableElement = this.el.components["media-loader"].data.linkedEl || this.el;
-			// 	// const isPinned = pinnableElement.components.pinnable && pinnableElement.components.pinnable.data.pinned;
-			// 	// this.update();
-			// 	//this.el.emit("pager-loaded");
-			// });
-			
-			// this.vanishButton.object3D.visible = true;
-			// NAF.utils
-			// 	.getNetworkedEntity(this.el)
-			// 	.then(networkedEl => {
-			// 		this.networkedEl = networkedEl;
-			// 		this.networkedEl.addEventListener("pinned", this.update);
-			// 		this.networkedEl.addEventListener("unpinned", this.update);
-			// 		window.APP.hubChannel.addEventListener("permissions_updated", this.update);
-			// 	})
-			// 	.catch(() => { }); //ignore exception, entity might not be networked
-
-
-            // schema: {
-            //     event: { type: 'string', default: '' },
-            //     message: { type: 'string', default: 'Hello, World!' }
-            // },
-    
-            // init: function () {
-            //     var self = this;
-            //     this.eventHandlerFn = function () { console.log(self.data.message); };
-            // },
-    
-            // update: function (oldData) {
-            //     var data = this.data;
-            //     var el = this.el;
-    
-            //     // `event` updated. Remove the previous event listener if it exists.
-            //     if (oldData.event && data.event !== oldData.event) {
-            //         el.removeEventListener(oldData.event, this.eventHandlerFn);
-            //     }
-    
-            //     if (data.event) {
-            //         el.addEventListener(data.event, this.eventHandlerFn);
-            //     } else {
-            //         console.log(data.message);
-            //     }
-            // }
-            // init: function() {
-            // 	console.log("ball has been created :)");
-            // 	console.log(this.el);
-    
-            // 	console.log(this.el.querySelector(".snap-button"));
-    
-            // 	this.vanishButton = this.el.querySelector(".snap-button");
-    
-            // 	if (this.vanishButton) {
-            // 		this.vanishButton.object3D.addEventListener("interact", () => {
-            // 			console.log("holy fuck it works")
-            // 		})
-            // 	}
-    
-            // 	// this.el.setAttribute("hover-menu__pager", { template: "#ball-hover-menu", isFlat: true });
-            // 	// this.el.components["hover-menu__pager"].getHoverMenu().then(menu => {
-            // 	// 	// If we got removed while waiting, do nothing.
-            // 	// 	if (!this.el.parentNode) return;
-    
-            // 	// 	console.log(this.el.querySelector(".snap-button"));
-    
-            // 	// 	this.vanishButton = this.el.querySelector(".snap-button");
-    
-            // 	// 	this.vanishButton.object3D.addEventListener("interact", () => {
-            // 	// 		console.log("holy fuck it works")
-            // 	// 	})
-    
-            // 	// });
-            // },
-            // update: function() {
-            // 	console.log("update was called")
-            // 	console.log(this.el.querySelector(".snap-button"));
-    
-            // 	this.vanishButton = this.el.querySelector(".snap-button");
-    
-            // 	if (this.vanishButton) {
-            // 		this.vanishButton.object3D.addEventListener("interact", () => {
-            // 			console.log("holy fuck it works")
-            // 		})
-            // 	}
-            // }
-    
-        // })
-        // //slap the button on there
-        // //Query assets in order to setup template
-        // let assets = document.querySelector("a-assets");
-        // // create a new template variable
-        // let pageHoverTemplate = document.createElement("template");
-        // // create template id
-        // pageHoverTemplate.id = "ball-hover-menu";
-    
-        // let menuEntity = document.createElement("a-entity");
-        // menuEntity.setAttribute("class", "ui interactable-ui");
-        // menuEntity.setAttribute("visible", "false");
-    
-        // menuEntity.innerHTML = "<a-entity class='snap-button' mixin='rounded-action-button' is-remote-hover-target='' tags='singleActionButton: true;' position='0 0 .25' scale='1 1 1' slice9='' text-button=''></a-entity>"
-    
-        // pageHoverTemplate.content.appendChild(menuEntity);
-    
-        // assets.appendChild(pageHoverTemplate);
-    
+document.querySelector("a-scene").addEventListener("chatevent", e => {
+	
+	// function we want to run we add mod_ to the string to isolate our custom functions
+	// from the global namespace and prevent people from running functions through chat
+	// interface unless it's one we've added for that purpose.
+	
+	var myMessage = e.detail.text;
+	
+	var fnstring = "mod_" + myMessage;
+	console.log("function string = " + fnstring);
+	// find object
+	var fn = window[fnstring];
+	
+	// is object a function?
+	if (typeof fn === "function"){
+		fn();
+	} else {
+		console.log(fn + " is not a function");
+	}
+});
