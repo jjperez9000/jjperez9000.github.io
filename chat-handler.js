@@ -15,40 +15,32 @@ var chatButtonIntervalCheck = setInterval(function () {
 		console.log("accent4 found")
 		clearInterval(chatButtonIntervalCheck);
 
-		document.querySelector("[class*=accent4]").onclick = function() {
+		detectLog();
+	}
+}, 2000)
+
+// //function to detect when a new chat window is pulled up
+function detectLog() {
+	console.log("the log does not exist yet");
+	presenceIntervalCheck = setInterval(function(){ 
+		if(document.querySelector("[class*=message-list]") != null ) {
+			console.log("found presence");
+
+			//add a function to the 'x' button on the window so that when it is closed
+			//we start searching for a window again
 			document.querySelector("[class*=icon-button]").onclick = function() {
 				observer.disconnect();
 				console.log("window closed");
 				console.log(document.querySelector("[class*=message-list]"))
 				detectLog();
 			}
+
 			checkPresence();
+		}else{
+			// console.log("checking presence");
 		}
-	}
-}, 2000)
-
-// //function to detect when a new chat window is pulled up
-// function detectLog() {
-// 	console.log("the log does not exist yet");
-// 	presenceIntervalCheck = setInterval(function(){ 
-// 		if(document.querySelector("[class*=message-list]") != null ) {
-// 			console.log("found presence");
-
-// 			//add a function to the 'x' button on the window so that when it is closed
-// 			//we start searching for a window again
-// 			document.querySelector("[class*=icon-button]").onclick = function() {
-// 				observer.disconnect();
-// 				console.log("window closed");
-// 				console.log(document.querySelector("[class*=message-list]"))
-// 				detectLog();
-// 			}
-
-// 			checkPresence();
-// 		}else{
-// 			// console.log("checking presence");
-// 		}
-// 	}, 2000);
-// }
+	}, 2000);
+}
 
 // detectLog();
 
