@@ -34,6 +34,6 @@ function detectLog() {
 		}else{
 			console.log("checking presence");
 		}
-	}, 2000);
+	}, 300);
 }
 
