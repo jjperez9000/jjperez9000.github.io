@@ -12,7 +12,7 @@ var currentGroup = null;
 chatButtonIntervalCheck = setInterval(() => {
 	// once found we assign it an onclick function to tell us to
 	// start searching for new chat messages
-	if (document.querySelector("[class*=accent4]") !== undefined) {
+	if (document.querySelector("[class*=accent4]") !== undefined && document.querySelector("[class*=accent4]") !== null) {
 		console.log("chat button found");
 
 		// start searching for the chat window once the chat button is clicked
