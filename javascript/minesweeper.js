@@ -596,8 +596,8 @@ function solve(firstClick) {
     let better = true;
     let solved = false
     let lifeLine = 0;
-    // let desperate = NUM_CELLS / 3 < components.NUM_BOMBS
-    let desperate = true
+    let desperate = NUM_CELLS / 3 < components.NUM_BOMBS
+    // let desperate = true
 
 
     while (!solved) {
@@ -659,7 +659,7 @@ function solve(firstClick) {
             }
         }
 
-        if (lifeLine === 50) {
+        if (lifeLine === 50 && !desperate) {
             desperate = true
             console.log("desperate times call for desperate measures")
         }
@@ -757,6 +757,14 @@ function solve(firstClick) {
  */
 function clickTile(loc) {
     tilesClicked++
+    console.log(tilesClicked)
+    if (tilesClicked === NUM_CELLS - components.NUM_BOMBS - 1) {
+        const messageObject = document.createElement("p")
+        messageObject.id = "victoryMessage"
+        const node = document.createTextNode("Victory!")
+        messageObject.appendChild(node)
+        document.getElementById("boards").insertBefore(messageObject, document.getElementById("boards").children[1])
+    }
     document.getElementById(loc.toString()).style.backgroundColor = 'gray';
     document.getElementById(loc.toString()).style.color = components.colors[user_board[loc]];
     if (user_board[loc]) {
@@ -865,6 +873,17 @@ function hideSolution() {
 }
 
 function makeBoard() {
+    if (document.getElementById("victoryMessage") !== undefined && document.getElementById("victoryMessage") !== null) {
+        document.getElementById("victoryMessage").remove();
+    }
+    if (document.getElementById("numCols").value <= 0 || document.getElementById("numRows").value <= 0 ||
+        document.getElementById("numCols").value * document.getElementById("numRows").value - 9 < document.getElementById("numBombs").value) {
+        return
+    }
+    if (document.getElementById("solutionBoard").style.display === "block") {
+        hideSolution()
+    }
+
     components.NUM_COLS = document.getElementById("numCols").value
     components.NUM_ROWS = document.getElementById("numRows").value
     components.NUM_BOMBS = document.getElementById("numBombs").value
