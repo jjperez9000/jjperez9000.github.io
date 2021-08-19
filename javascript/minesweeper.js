@@ -597,6 +597,13 @@ function solve(firstClick) {
     let solved = false
     let lifeLine = 0;
     let desperate = NUM_CELLS / 3 < components.NUM_BOMBS
+    let max
+    if (Math.floor(NUM_CELLS / 10000) > 0) {
+        max = Math.floor(NUM_CELLS / 10000)
+    } else {
+        max = 1
+    }
+    console.log(max)
     // let desperate = true
 
 
@@ -605,9 +612,11 @@ function solve(firstClick) {
         //this bit of code is literally the only reason that this minesweeper game works. My mind is blown.
         //
         if (desperate) {
-            result = moveBomb(board, clicked, flagged)
-            better = result[0];
-            board = result[1];
+            for (let i=0; i<max; i++) {
+                result = moveBomb(board, clicked, flagged)
+                better = result[0];
+                board = result[1];
+            }
         }
 
         //click and flag all easy tiles
