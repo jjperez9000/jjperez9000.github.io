@@ -11,36 +11,57 @@
     <form style="width: 1032px; opacity: 1; background: rgb(255, 255, 255); color: rgb(0, 0, 0); padding: 10px; top: 129.7px; left: 258px; z-index: 100;">
         <p style="margin-top: 0px;">Network Configuration:</p>
         <p>Number of Routers:<input id="numRouters" type="text"></p> 
-        <p>Bandwidth:<input id="bandWidth" type="text">
-            <select id="biteSize" name="cars">
+        <p>Packet Size<input id="packetSize" type="text">
+            <select id="packetMultiplier" name="cars">
+                <option value=" "> </option>
                 <option value="M">M</option>
                 <option value="K">K</option>
+            </select>
+            <select id="packetType" name="cars">
+                <option value="b">b</option>
+                <option value="B">B</option>
+            </select>
+        </p>
+        <p>Bandwidth:<input id="bandWidth" type="text">
+            <select id="biteSize" name="cars">
                 <option value=" "> </option>
+                <option value="M">M</option>
+                <option value="K">K</option>
             </select>
             <select id="biteType" name="cars">
                 <option value="b">b</option>
                 <option value="B">B</option>
             </select>
-            //
-            <select id="biteRate" name="cars">
+            // s
+            <!-- <select id="biteRate" name="cars">
                 <option value="s">s</option>
                 <option value="ms">ms</option>
-            </select>
+            </select> -->
         </p>
         <p>Cable Speed:<input id="cableSpeed" type="text">
             <select id="cableDistanceUnit" name="cars">
-                <option value="">m</option>
-                <option value="">Km</option>
+                <option value="m">m</option>
+                <option value="Km">Km</option>
             </select>
-            //
-            <select id="cableDistanceTime" name="cars">
+            // s
+            <!-- <select id="cableDistanceTime" name="cars">
                 <option value="MB/s">s</option>
                 <option value="">ms</option>
-            </select></p>
+            </select> -->
+        </p>
         <p>Distance Between Routers:<input id="distance" type="text">Km</p>
         <p>Store & Forward Delay:<input id="sfD" type="text">ms</p>
-        <button onclick="makeBoard()">Submit</button>
     </form>
+    <button onclick="readSubmission()">Submit</button>
+
+    <br>
+    <div>
+        <div id="graphic"></div>
+        <br>
+        <div id="work"></div>
+        <br>
+        <div id="answer"></div>
+    </div>
 </body>
 
-<script type="text/javascript" src="javascript/minesweeper.js"></script>
+<script type="text/javascript" src="javascript/networking.js"></script>
