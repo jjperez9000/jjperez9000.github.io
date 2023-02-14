@@ -1,7 +1,7 @@
 /** @format */
 import { MenuBar } from "./Menubar";
 import { ArrowLongUpIcon } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export function TextInputWithButton({ submitText }) {
   let [text, setText] = useState("");
@@ -17,6 +17,7 @@ export function TextInputWithButton({ submitText }) {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 submitText(text);
+                setText("");
               }
             }}
             className="block w-full rounded-none rounded-l-md border-gray-300 pl-5 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -27,6 +28,7 @@ export function TextInputWithButton({ submitText }) {
           className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 active:bg-gray-200"
           onClick={() => {
             submitText(text);
+            setText("");
           }}
         >
           <span>
@@ -43,9 +45,18 @@ export function TextInputWithButton({ submitText }) {
 
 export function Companion() {
   let [answers, setAnswers] = useState([]);
-  let [key, setText] = useState("");
+  let [key, setKey] = useState("");
   function submitText(question) {
     console.log(question);
+    setAnswers([
+      ...answers,
+      {
+        key: key,
+        question: question,
+        answer: "...",
+      },
+    ]);
+
     fetch(
       "https://55dzshtlzc.execute-api.us-east-1.amazonaws.com/prod/question",
       {
@@ -105,7 +116,7 @@ export function Companion() {
               <input
                 type="text"
                 value={key}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) => setKey(e.target.value)}
                 className="block w-full rounded-md border-gray-300 pl-3 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
