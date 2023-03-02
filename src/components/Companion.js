@@ -69,7 +69,7 @@ export function Companion() {
         method: "POST",
         body: JSON.stringify({
           question: [...conversation, { role: "user", content: question }],
-          token: "thesneakybackdoor",
+          token: key,
         }),
       }
     )
