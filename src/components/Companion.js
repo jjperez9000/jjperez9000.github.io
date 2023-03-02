@@ -45,9 +45,15 @@ export function TextInputWithButton({ submitText }) {
 
 export function Companion() {
   let [answers, setAnswers] = useState([]);
+  let [conversation, setConversation] = useState([
+    {
+      role: "system",
+      content:
+        'you are a helpful assistant who enjoys using emoticons like :D :P :) :(. You also never say "how may I assist you today?", or anything similar to it.',
+    },
+  ]);
   let [key, setKey] = useState("");
   function submitText(question) {
-    console.log(question);
     setAnswers([
       ...answers,
       {
@@ -56,14 +62,14 @@ export function Companion() {
         answer: "...",
       },
     ]);
-
+    console.log(conversation);
     fetch(
       "https://55dzshtlzc.execute-api.us-east-1.amazonaws.com/prod/question",
       {
         method: "POST",
         body: JSON.stringify({
-          question: question,
-          token: key,
+          question: [...conversation, { role: "user", content: question }],
+          token: "thesneakybackdoor",
         }),
       }
     )
@@ -71,6 +77,12 @@ export function Companion() {
       .then((answer) => {
         const key = answers.length;
         console.log(answer);
+
+        setConversation([
+          ...conversation,
+          { role: "user", content: question },
+          { role: "assistant", content: answer },
+        ]);
         setAnswers([
           ...answers,
           {
@@ -79,6 +91,9 @@ export function Companion() {
             answer: answer,
           },
         ]);
+      })
+      .then(() => {
+        console.log(conversation);
       });
   }
   return (
